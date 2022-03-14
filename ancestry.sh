@@ -2,6 +2,53 @@
 
 set -x
 
+while getopts ":i:v:o:c:" flag
+do
+    case "${flag}" in
+        i) SAMPLE=${OPTARG};;
+        v) VCF=${OPTARG};;
+        o) OUTDIR=${OPTARG};;
+        c) CPU=${OPTARG};;
+        \?) valid=0
+            echo "An invalid option has been entered: $OPTARG"
+            exit 0
+            ;;
+
+        :)  valid=0
+            echo "The additional argument for option $OPTARG was omitted."
+            exit 0
+            ;;
+
+    esac
+done
+
+shift "$(( OPTIND - 1 ))"
+
+if [ -z "$SAMPLE" ]; then
+        echo 'Missing -i ID' >&2
+        exit 1
+fi
+
+if [ -z "$VCF" ]; then
+        echo 'Missing -v VCF file' >&2
+        exit 1
+fi
+
+if [ -z "$OUTDIR" ]; then
+        echo 'Missing -o output directory' >&2
+        exit 1
+fi
+
+if [ -z "$CPU" ]; then
+      echo 'Missing -c CPU' >&2
+      exit 1
+fi
+
+echo $SAMPLE
+echo $VCF
+echo $OUTDIR
+echo $CPU
+
 
 # sample directories
 SAMPLEDIR=${OUTDIR}/${SAMPLE}/${SAMPLE}_ANCESTRY_REPORT
@@ -157,5 +204,25 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
   --out ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3
   mv ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.log ${LOG}/admixture_ref_HAPMAP3_11.log
 
+
+
+  # Admixture
+
+  # NOTE: Admixture always outputs into the current directory
+
+  # Hapmap3
+  awk 'FNR==NR{a[$2]=$3;next}{print $0,a[$2]?a[$2]:"-"}' ${REF_HAPMAP3_POP} ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.fam \
+    > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt
+  awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.pop
+
+  admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
+  mv ${SAMPLE}.admixture_ref_HAPMAP3.11.Q ${SAMPLE_SUP}
+  mv ${SAMPLE}.admixture_ref_HAPMAP3.11.P ${SAMPLE_SUP}
+
+  rm -r ${TEMPDIR}
+
+  # Graphical outputs
+  Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_HapMap3 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.11.Q \
+    ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.fam ${REF_HAPMAP3_POP} "HapMap3" ${CONFIG}
 
 } 2>&1 | tee ${LOG}/ancestry.log
