@@ -133,6 +133,11 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
 
   ## Check and correct chromosome mismatch
 
+  ## QUESTION: Why is this step needed? if we based the comparison via our custom rsID which has the chromosome number in it,
+  ## then a mismatch is impossible. Opening the toUpdateChr file only shows list of ChrX variants. This is because the Chr column in the population reference
+  ## shows ChrX as 'X' while in the sample it is '23'. Wouldn't it be more logical to change the population reference 'X' to '23' and just skip this step?
+  ## sed 's/^X/23/' pop_ref.bim > pop_ref_fixed.bim should suffice, right?
+
   awk 'BEGIN {OFS="\t"} FNR==NR {a[$2]=$1; next} ($2 in a && a[$2] != $1) {print a[$2],$2}' \
   ${SAMPLE_SUP}/${SAMPLE}.pruned.bim ${TEMPDIR}/${SAMPLE}_ref_HAPMAP3.pruned.no_dups.bim | \
   sed -n '/^[XY]/!p' > ${TEMPDIR}/${SAMPLE}_ref_HAPMAP3.toUpdateChr
