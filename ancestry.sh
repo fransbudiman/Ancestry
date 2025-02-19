@@ -138,6 +138,8 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
   ## shows ChrX as 'X' while in the sample it is '23'. Wouldn't it be more logical to change the population reference 'X' to '23' and just skip this step?
   ## sed 's/^X/23/' pop_ref.bim > pop_ref_fixed.bim should suffice, right?
 
+  ## $1 : CHR, $2 : rsID, $3 : Distance, $4 : POS, $5 : REF, $6 : ALT
+
   awk 'BEGIN {OFS="\t"} FNR==NR {a[$2]=$1; next} ($2 in a && a[$2] != $1) {print a[$2],$2}' \
   ${SAMPLE_SUP}/${SAMPLE}.pruned.bim ${TEMPDIR}/${SAMPLE}_ref_HAPMAP3.pruned.no_dups.bim | \
   sed -n '/^[XY]/!p' > ${TEMPDIR}/${SAMPLE}_ref_HAPMAP3.toUpdateChr
@@ -220,6 +222,7 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
     > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt
   awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.pop
 
+  # NOTE: I am somehow unable to run the admixture 64-bit. I keep on getting segmentation fault error, even after reducing the sample size. Downloading admixture 32-bit version works fine.
   admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.Q ${SAMPLE_SUP}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.P ${SAMPLE_SUP}
