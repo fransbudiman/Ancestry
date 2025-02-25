@@ -57,7 +57,7 @@ if (reference_indicator == "HapMap3"){
   reference <- read.table(reference_data, header = TRUE)
 
   # match reference data to fam
-  results["Region"] <- lapply(results["name"], function(col) reference$V6[match(col, reference$IID)])
+  results["Region"] <- lapply(results["name"], function(col) reference$Pop[match(col, reference$IID)])
   results <- results[order(results$Region),]
 
 
