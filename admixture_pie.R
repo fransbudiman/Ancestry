@@ -19,8 +19,6 @@ sample_fam_file <-args[4]
 reference_data <- args[5]
 reference_indicator <- args[6]
 configuration <- args[7]
-full_name_reference_3 <- paste0(configuration, "/hapmap3.csv")
-
 
 # load sample data
 results <- read.table(sample_Q_file)
@@ -36,6 +34,7 @@ gc()
 # determine HAPMAP3 or 1000 Genomes
 if (reference_indicator == "HapMap3"){
   # load reference data
+  full_name_reference_3 <- paste0(configuration, "/hapmap3.csv")
   reference <- read.table(reference_data, header = TRUE)
 
   # match reference data to fam
@@ -52,12 +51,13 @@ if (reference_indicator == "HapMap3"){
   w <- 180
   h <- 280
 
-}else if (reference_indicator == "1000 Genomes Pop"){
+}else if (reference_indicator == "1000Genomes"){
   # load reference data
-  reference <- read.table(reference_data, header = FALSE)
+  full_name_reference_3 <- paste0(configuration, "/1kgenomes.csv")
+  reference <- read.table(reference_data, header = TRUE)
 
   # match reference data to fam
-  results["Region"] <- lapply(results["name"], function(col) reference$V6[match(col, reference$V1)])
+  results["Region"] <- lapply(results["name"], function(col) reference$V6[match(col, reference$IID)])
   results <- results[order(results$Region),]
 
 
@@ -67,7 +67,7 @@ if (reference_indicator == "HapMap3"){
   coul3 <- brewer.pal(7, "Pastel2")
   coul <- c(coul1, coul2, coul3)
 
-  full_name_reference <- read.table(full_name_reference_1, sep="\t", header=TRUE)
+  full_name_reference <- read.table(full_name_reference_1, sep=",", header=TRUE)
 
   # region
   regions <- full_name_reference$Region
