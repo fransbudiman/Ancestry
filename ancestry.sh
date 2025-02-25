@@ -80,6 +80,7 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
   # HapMap3
 
   ## Make the binary files WITHOUT rsIDs
+  # Can't we do this step together with the previous one?
 
   plink2 --bfile ${TEMPDIR}/${SAMPLE}_original \
       --make-bed \
@@ -113,6 +114,12 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
   --out ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1
   mv ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.log ${LOG}/no_ac_gt_snps_prune_pass1_4.log
 
+  # This step seems redundant. Can't we just use the ${SAMPLE}.no_ac_gt_snps_prune_pass1 file?
+  # also I think this might not work when there are multiple samples
+  # When using one sample --indep-pairwise is ignored so the output file will indeed be ${SAMPLE}.no_ac_gt_snps_prune_pass1.bim,
+  # but with multiple sample the output should be ${SAMPLE}.no_ac_gt_snps_prune_pass1.prune.in, which we will need to extract from the original dataset
+  # Just a guess, need to try with dataset that have multiple samples
+  
   plink --bfile ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps \
   --extract ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.bim \
   --make-bed \
@@ -214,7 +221,6 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
 
 
   # Admixture
-
   # NOTE: Admixture always outputs into the current directory
 
   # Hapmap3
