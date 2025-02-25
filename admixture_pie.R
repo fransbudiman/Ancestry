@@ -67,7 +67,7 @@ if (reference_indicator == "HapMap3"){
   coul3 <- brewer.pal(7, "Pastel2")
   coul <- c(coul1, coul2, coul3)
 
-  full_name_reference <- read.table(full_name_reference_1, sep=",", header=TRUE)
+  full_name_reference <- read.table(full_name_reference_3, sep=",", header=TRUE)
 
   # region
   regions <- full_name_reference$Region
