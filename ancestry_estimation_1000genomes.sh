@@ -72,7 +72,7 @@ mkdir -p ${LOG}
 # reference files
 CONFIG=$PWD/Configuration
 REF_1KGENOMES=${CONFIG}/Reference_1000Genomes
-REF_BED_1KGENOMES=${REF_1KGENOMES}/1000Genomes_CGRCh37.admixture
+REF_BED_1KGENOMES=${REF_1KGENOMES}/1KGenomes.admixture
 REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
 
 {
