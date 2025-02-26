@@ -222,7 +222,7 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.pop
 
     # Run admixture
-    admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.bed 26 --supervised -j${CPU}
+    admixture32 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.bed 26 --supervised -j${CPU}
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.Q ${SAMPLE_SUP}
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.P ${SAMPLE_SUP}
 
