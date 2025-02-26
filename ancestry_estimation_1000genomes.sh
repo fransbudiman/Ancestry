@@ -155,7 +155,7 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     --make-bed \
     --allow-extra-chr \
     --out ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr
-      mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr.log ${LOG}/ref_HAPMAP3.updateChr_7.log
+      mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr.log ${LOG}/_ref_1KGenomes.updateChr_7.log
 
 
     # Position match
