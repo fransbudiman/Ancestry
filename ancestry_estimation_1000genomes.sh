@@ -87,11 +87,12 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
 
     mv ${TEMPDIR}/${SAMPLE}_original.log ${LOG}/Binary_1.log
 
+    MAX_LEN=$(( $(awk '{print length($5) + length($6)}' ${TEMPDIR}/${SAMPLE}_original.bim | sort -nr | head -1) + 15 ))
     # Set rsID to custom format
     plink2 --bfile ${TEMPDIR}/${SAMPLE}_original \
         --make-bed \
         --set-all-var-ids @:\#:\$r:\$a \
-        --new-id-max-allele-len 1000 \
+        --new-id-max-allele-len ${MAX_LEN} \
         --allow-extra-chr \
         --out ${TEMPDIR}/${SAMPLE}
 
