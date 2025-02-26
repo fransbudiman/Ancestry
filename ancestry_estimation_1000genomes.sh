@@ -5,7 +5,8 @@ set -x
 
 # TO RUN: set -i as sample name, -v as path to VCF file, -o path to desired output location, -c as threads to use.
 # The population reference dataset should be in $PWD/Configuration/Reference_1000Genomes/1000Genomes_CGRCh37.admixture.
-# the ID to Pop text file should be in $PWD/Configuration//Genomes1000_ID2Pop.txt
+# the ID to Pop text file should be in $PWD/Configuration//Genomes1000_ID2Pop.txt.
+# admixture_pie.R is in current working directory.
 
 #set default values from command line arguments
 while getopts ":i:v:o:c:" flag
@@ -226,4 +227,4 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_1KGenomes ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.26.Q \
     ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.fam ${REF_1KGENOMES_POP} "1000Genomes" ${CONFIG}
 
-}2>&1 | tee ${LOG}/ancestry.log
+} 2>&1 | tee ${LOG}/ancestry.log
