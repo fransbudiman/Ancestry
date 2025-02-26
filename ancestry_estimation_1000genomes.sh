@@ -225,7 +225,7 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.Q ${SAMPLE_SUP}
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.P ${SAMPLE_SUP}
 
-    # rm -r ${TEMPDIR}
+    rm -r ${TEMPDIR}
     # run R script to generate pie chart
     Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_1KGenomes ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.26.Q \
     ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.fam ${REF_1KGENOMES_POP} "1000Genomes" ${CONFIG}
