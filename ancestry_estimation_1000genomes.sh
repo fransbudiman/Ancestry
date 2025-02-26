@@ -7,6 +7,7 @@ set -x
 # The population reference dataset should be in $PWD/Configuration/Reference_1000Genomes/1000Genomes_CGRCh37.admixture.
 # the ID to Pop text file should be in $PWD/Configuration//Genomes1000_ID2Pop.txt.
 # admixture_pie.R is in current working directory.
+# 1kgenomes.csv in $PWD/Configuration
 
 #set default values from command line arguments
 while getopts ":i:v:o:c:" flag
