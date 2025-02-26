@@ -155,7 +155,7 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     --make-bed \
     --allow-extra-chr \
     --out ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr
-      mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr.log ${LOG}/_ref_1KGenomes.updateChr_7.log
+      mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.updateChr.log ${LOG}/${SAMPLE}_ref_1KGenomes.updateChr_7.log
 
 
     # Position match
@@ -179,7 +179,7 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
     --make-bed \
     --allow-extra-chr \
     --out ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.flipped
-    mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.flipped.log ${LOG}/_ref_1KGenomes.flipped_8.log
+    mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.flipped.log ${LOG}/${SAMPLE}_ref_1KGenomes.flipped_8.log
 
     # Remove mismatches
     # If done correctly, this should output empty file
