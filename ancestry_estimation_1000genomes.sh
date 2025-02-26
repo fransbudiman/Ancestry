@@ -3,6 +3,10 @@
 #enable debugging
 set -x
 
+# TO RUN: set -i as sample name, -v as path to VCF file, -o path to desired output location, -c as threads to use.
+# The population reference dataset should be in $PWD/Configuration/Reference_1000Genomes/1000Genomes_CGRCh37.admixture.
+# the ID to Pop text file should be in $PWD/Configuration//Genomes1000_ID2Pop.txt
+
 #set default values from command line arguments
 while getopts ":i:v:o:c:" flag
 do
