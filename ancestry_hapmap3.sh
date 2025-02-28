@@ -32,7 +32,7 @@ cd ${TEMPDIR}
         --make-bed \
         --out ${TEMPDIR}/HapMapIII_NCBI36
 
-  mv ${TEMPDIR}/HapMapIII_NCBI36.LOG ${LOG}
+  mv ${TEMPDIR}/HapMapIII_NCBI36.log ${LOG}
 
   awk '{print "chr" $1, $4 -1, $4, $2 }' ${TEMPDIR}/HapMapIII_NCBI36.bim | \
       sed 's/chr23/chrX/' | sed 's/chr24/chrY/' > \
