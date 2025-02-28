@@ -42,7 +42,10 @@ cd ${TEMPDIR}
   wget https://hgdownload.cse.ucsc.edu/goldenpath/hg18/liftOver/hg18ToHg19.over.chain.gz
   gunzip hg18ToHg19.over.chain.gz
 
-  liftOver ${TEMPDIR}/HapMapIII_NCBI36.tolift ${CONFIG}/hg18ToHg19.over.chain \
+  # download the liftOver tool
+  wget https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
+  
+  ./liftOver ${TEMPDIR}/HapMapIII_NCBI36.tolift ${CONFIG}/hg18ToHg19.over.chain \
      ${TEMPDIR}/HapMapIII_CGRCh37 ${TEMPDIR}/HapMapIII_NCBI36.unMapped
 
   # extract mapped variants
