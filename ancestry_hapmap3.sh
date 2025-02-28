@@ -83,7 +83,7 @@ cd ${TEMPDIR}
   --rm-dup force-first \
   --out ${REFDIR}/HapMapIII_CGRCh37.admixture
 
-  mv ${REFDIR}/HapMapIII_CGRCh37.admixture.LOG ${LOG}
+  mv ${REFDIR}/HapMapIII_CGRCh37.admixture.log ${LOG}
 
   rm -r ${TEMPDIR}
 } 2>&1 | tee ${LOG}/HapMap3.log
