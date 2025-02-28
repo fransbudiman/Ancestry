@@ -37,7 +37,10 @@ cd ${TEMPDIR}
   awk '{print "chr" $1, $4 -1, $4, $2 }' ${TEMPDIR}/HapMapIII_NCBI36.bim | \
       sed 's/chr23/chrX/' | sed 's/chr24/chrY/' > \
       ${TEMPDIR}/HapMapIII_NCBI36.tolift
-
+      
+  # download over chain
+  wget https://hgdownload.cse.ucsc.edu/goldenpath/hg18/liftOver/hg18ToHg19.over.chain.gz
+  gunzip hg18ToHg19.over.chain.gz
 
   liftOver ${TEMPDIR}/HapMapIII_NCBI36.tolift ${CONFIG}/hg18ToHg19.over.chain \
      ${TEMPDIR}/HapMapIII_CGRCh37 ${TEMPDIR}/HapMapIII_NCBI36.unMapped
