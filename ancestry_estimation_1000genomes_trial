@@ -87,6 +87,10 @@ REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
 
     mv ${TEMPDIR}/${SAMPLE}_original.log ${LOG}/Binary_1.log
 
+    # Will concatenate "_sample" to our sample name to ensure it will not share same name with any of our population reference data.
+    awk '{$2 = $2 "_sample"; print}' ${SAMPLE}_original.fam > temp.fam
+    mv temp.fam ${SAMPLE}_original.fam
+
     MAX_LEN=$(( $(awk '{print length($5) + length($6)}' ${TEMPDIR}/${SAMPLE}_original.bim | sort -nr | head -1) + 15 ))
     # Set rsID to custom format
     plink2 --bfile ${TEMPDIR}/${SAMPLE}_original \
