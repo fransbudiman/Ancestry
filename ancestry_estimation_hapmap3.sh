@@ -233,7 +233,7 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
   awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.pop
 
   # NOTE: I am somehow unable to run the admixture 64-bit. I keep on getting segmentation fault error, even after reducing the sample size. Downloading admixture 32-bit version works fine.
-  admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
+  admixture32 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.Q ${SAMPLE_SUP}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.P ${SAMPLE_SUP}
 
