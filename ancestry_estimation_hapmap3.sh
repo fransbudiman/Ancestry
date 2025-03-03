@@ -79,6 +79,10 @@ REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
 
   # HapMap3
 
+ # Will concatenate "_HapMap3" to our sample name to ensure it will not share same name with any of our population reference data.
+ awk '{$2 = $2 "_HapMap3"; print}' ${TEMPDIR}/${SAMPLE}_original.fam > ${TEMPDIR}/temp.fam
+ mv ${TEMPDIR}/temp.fam ${TEMPDIR}/${SAMPLE}_original.fam
+
   ## Make the binary files WITHOUT rsIDs
   # Can't we do this step together with the previous one?
 
