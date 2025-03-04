@@ -9,6 +9,7 @@ set -x
 # admixture_pie.R is in current working directory.
 # 1kgenomes.csv in $PWD/Configuration
 
+
 #set default values from command line arguments
 while getopts ":i:v:o:c:" flag
 do
@@ -76,6 +77,11 @@ CONFIG=$PWD/Configuration
 REF_1KGENOMES=${CONFIG}/Reference_1000Genomes
 REF_BED_1KGENOMES=${REF_1KGENOMES}/1KGenomes.admixture
 REF_1KGENOMES_POP=${CONFIG}/Genomes1000_ID2Pop.txt
+
+#temporary setting up
+cd ${CONFIG}
+wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/1kgenomes.csv
+wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/Genomes1000_ID2Pop.txt
 
 {
     # Convert VCF to Plink binary
