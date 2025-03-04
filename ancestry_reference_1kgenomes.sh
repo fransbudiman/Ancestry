@@ -51,6 +51,7 @@ cd ${TEMPDIR}
         --set-all-var-ids @:\#:\$r:\$a \
         --new-id-max-allele-len 997 \
         --allow-extra-chr \
+        --memory 7000 \
         --out ${TEMPDIR}/all_phase3_replace_var_ids
     mv ${TEMPDIR}/all_phase3_replace_var_ids.LOG ${LOG}
 
@@ -65,9 +66,10 @@ cd ${TEMPDIR}
     --make-bed \
     --allow-extra-chr \
     --rm-dup force-first \
+    --memory 7000 \
     --out ${REFDIR}/1KGenomes.admixture
 
     mv ${REFDIR}/1KGenomes.admixture.LOG ${LOG}
     rm -r ${TEMPDIR}
-    
+
 } 2>&1 | tee ${LOG}/1KGenomes.log
