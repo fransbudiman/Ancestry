@@ -73,11 +73,11 @@ if [ ! -f "admixture_pie.R" ]; then
 fi
 
 if [ ! -f "${CONFIG}/1kgenomes.csv" ]; then
-    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/hapmap3.csv -P ${CONFIG}
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/1kgenomes.csv -P ${CONFIG}
 fi
 
 if [ ! -f "${CONFIG}/Genomes1000_ID2Pop.txt" ]; then
-    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/HapMap_ID2Pop.txt -P ${CONFIG}
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/Genomes1000_ID2Pop.txt -P ${CONFIG}
 fi
 
 if [ ! -f "${CONFIG}/highld.txt" ]; then
