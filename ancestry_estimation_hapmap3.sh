@@ -67,6 +67,24 @@ REF_HAPMAP3=${CONFIG}/Reference_HapMap3
 REF_BED_HAPMAP3=${REF_HAPMAP3}/HapMapIII_CGRCh37.admixture
 REF_HAPMAP3_POP=${CONFIG}/HapMap_ID2Pop.txt
 
+# temporary setting up
+if [ ! -f "admixture_pie.R" ]; then
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/admixture_pie.R
+fi
+
+if [ ! -f "${CONFIG}/1kgenomes.csv" ]; then
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/hapmap3.csv -P ${CONFIG}
+fi
+
+if [ ! -f "${CONFIG}/Genomes1000_ID2Pop.txt" ]; then
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/HapMap_ID2Pop.txt -P ${CONFIG}
+fi
+
+if [ ! -f "${CONFIG}/highld.txt" ]; then
+    wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/highld.txt -P ${CONFIG}
+fi
+
+
 {
   plink --vcf ${VCF} \
       --make-bed \
