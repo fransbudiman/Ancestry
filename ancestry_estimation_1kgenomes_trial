@@ -85,6 +85,7 @@ cd ${CONFIG}
 wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/1kgenomes.csv
 wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/Genomes1000_ID2Pop.txt
 wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/Configuration/highld.txt
+cd ..
 
 
 {
