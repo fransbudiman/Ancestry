@@ -112,13 +112,13 @@ fi
     awk '{$2 = $2 "_1KGenomes"; print}' ${TEMPDIR}/${SAMPLE}_original.fam > ${TEMPDIR}/temp.fam
     mv ${TEMPDIR}/temp.fam ${TEMPDIR}/${SAMPLE}_original.fam
 
-    MAX_LEN=$(( $(awk '{print length($5) + length($6)}' ${TEMPDIR}/${SAMPLE}_original.bim | sort -nr | head -1) + 15 ))
-    # Set rsID to custom format
+    # Set rsID to custom format (if allele is longer than 1000 base it will be subtituted with "."
     plink2 --bfile ${TEMPDIR}/${SAMPLE}_original \
         --make-bed \
         --set-all-var-ids @:\#:\$r:\$a \
-        --new-id-max-allele-len ${MAX_LEN} \
+        --new-id-max-allele-len 1000 missing \
         --allow-extra-chr \
+        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}
 
     mv ${TEMPDIR}/${SAMPLE}.log ${LOG}/Original_2.log
@@ -134,6 +134,7 @@ fi
         --exclude ${TEMPDIR}/${SAMPLE}.ac_gt_snps \
         --make-bed \
         --allow-extra-chr \
+        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps
     mv ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps.log ${LOG}/no_ac_gt_snps_3.log
 
@@ -144,6 +145,7 @@ fi
         --indep-pairwise 50 5 0.2 \
         --make-bed \
         --allow-extra-chr \
+        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1
     mv ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.log ${LOG}/no_ac_gt_snps_prune_pass1_4.log
 
@@ -152,6 +154,7 @@ fi
         --extract ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.bim \
         --make-bed \
         --allow-extra-chr \
+        --memory 7000 \
         --out ${SAMPLE_SUP}/${SAMPLE}.pruned
     mv ${SAMPLE_SUP}/${SAMPLE}.pruned.log ${LOG}/pruned_5.log
 
@@ -226,6 +229,7 @@ fi
     ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.clean.fam \
     --make-bed \
     --allow-extra-chr \
+    --memory 7000 \
     --out ${TEMPDIR}/${SAMPLE}.merge_ref_1KGenomes
 
     mv ${TEMPDIR}/${SAMPLE}.merge_ref_1KGenomes.log ${LOG}/merge_ref_1KGenomes_10.log
@@ -236,6 +240,7 @@ fi
     --geno 0.999 \
     --make-bed \
     --allow-extra-chr \
+    --memory 7000 \
     --out ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes
     mv ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.log ${LOG}/admixture_ref_1KGenomes_11.log
 
