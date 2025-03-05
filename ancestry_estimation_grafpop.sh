@@ -18,7 +18,8 @@ PNG_FILE=$3
     # Check if grafpop and PlotGrafPopResults.pl executable exist
     if [ ! -f "/usr/local/bin/grafpop" ]; then
         echo "grafpop executable not found. Installing it . . ."
-        
+        mkdir GrafPop
+        cd GrafPop
         # Download and extract GrafPop
         if ! command -v wget &> /dev/null; then
             echo "wget is not installed. Please install it."
@@ -37,8 +38,6 @@ PNG_FILE=$3
             exit 1
         fi
         
-        mkdir GrafPop
-        mv * GrafPop
         mv GrafPop /opt/
         sudo ln -s /opt/GrafPop/grafpop /usr/local/bin/grafpop
         sudo ln -s /opt/GrafPop/PlotGrafPopResults.pl /usr/local/bin/PlotGrafPopResults.pl
