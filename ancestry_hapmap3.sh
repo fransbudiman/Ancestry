@@ -39,8 +39,8 @@ cd ${TEMPDIR}
       ${TEMPDIR}/HapMapIII_NCBI36.tolift
       
   # download over chain
-  wget https://hgdownload.cse.ucsc.edu/goldenpath/hg18/liftOver/hg18ToHg19.over.chain.gz
-  gunzip hg18ToHg19.over.chain.gz
+  wget https://hgdownload.cse.ucsc.edu/goldenpath/hg18/liftOver/hg18ToHg19.over.chain.gz -P ${CONFIG}
+  gunzip ${CONFIG}/hg18ToHg19.over.chain.gz
 
   # download the liftOver tool
   wget https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
