@@ -37,7 +37,7 @@ PNG_FILE=$3
             echo "Error extracting the tarball."
             exit 1
         fi
-        
+        cd ..
         mv GrafPop /opt/
         sudo ln -s /opt/GrafPop/grafpop /usr/local/bin/grafpop
         sudo ln -s /opt/GrafPop/PlotGrafPopResults.pl /usr/local/bin/PlotGrafPopResults.pl
