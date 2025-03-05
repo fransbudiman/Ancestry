@@ -10,7 +10,7 @@ PNG_FILE=$3
 
 {
 # check if arguments are empty
-if [ -z "$VCF_FILE" || -z "$RESULT_FILE" || -z "$PNG_FILE"]; then
+if [ -z "$VCF_FILE" ] || [ -z "$RESULT_FILE" ] || [ -z "$PNG_FILE" ]; then
     echo "Missing arguments. Please provide VCF file, result file, and PNG file."
     exit 1
 fi
