@@ -107,7 +107,7 @@ for (region in regions){
 ## graph patient sample
 # patient <- results[is.na(results$Region),]
 # New method to define patient
-patient <- results[results$name == sample_name & is.na(results$Region), ]
+patient <- results[grepl("(_HapMap3|_1KGenomes)$", results$name) & is.na(results$Region), ]
 dat <- melt(patient, id=c("Region", "name"))
 dat$value <- signif(dat$value * 100, digits=3)
 dat$Labels <- sapply(dat$value, function(x){
