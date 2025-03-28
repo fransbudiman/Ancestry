@@ -118,7 +118,6 @@ fi
         --set-all-var-ids @:\#:\$r:\$a \
         --new-id-max-allele-len 1000 missing \
         --allow-extra-chr \
-        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}
 
     mv ${TEMPDIR}/${SAMPLE}.log ${LOG}/Original_2.log
@@ -134,7 +133,6 @@ fi
         --exclude ${TEMPDIR}/${SAMPLE}.ac_gt_snps \
         --make-bed \
         --allow-extra-chr \
-        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps
     mv ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps.log ${LOG}/no_ac_gt_snps_3.log
 
@@ -145,7 +143,6 @@ fi
         --indep-pairwise 50 5 0.2 \
         --make-bed \
         --allow-extra-chr \
-        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1
     mv ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.log ${LOG}/no_ac_gt_snps_prune_pass1_4.log
 
@@ -154,7 +151,6 @@ fi
         --extract ${TEMPDIR}/${SAMPLE}.no_ac_gt_snps_prune_pass1.bim \
         --make-bed \
         --allow-extra-chr \
-        --memory 7000 \
         --out ${SAMPLE_SUP}/${SAMPLE}.pruned
     mv ${SAMPLE_SUP}/${SAMPLE}.pruned.log ${LOG}/pruned_5.log
 
@@ -164,7 +160,6 @@ fi
         --make-bed \
         --allow-extra-chr \
         --rm-dup force-first \
-        --memory 7000 \
         --out ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.pruned.no_dups
     mv ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.pruned.no_dups.log ${LOG}/ref_1KGenomes_pruned_no_dups_6.log
 
@@ -229,7 +224,6 @@ fi
     ${TEMPDIR}/${SAMPLE}_ref_1KGenomes.clean.fam \
     --make-bed \
     --allow-extra-chr \
-    --memory 7000 \
     --out ${TEMPDIR}/${SAMPLE}.merge_ref_1KGenomes
 
     mv ${TEMPDIR}/${SAMPLE}.merge_ref_1KGenomes.log ${LOG}/merge_ref_1KGenomes_10.log
@@ -240,9 +234,17 @@ fi
     --geno 0.999 \
     --make-bed \
     --allow-extra-chr \
-    --memory 7000 \
     --out ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes
-    mv ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.log ${LOG}/admixture_ref_1KGenomes_11.log
+    mv ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.log ${LOG}/geno_filter_11.log
+
+    # Remove non-integer chromosome entries from the bim file
+    awk '$1 !~ /^[0-9]+$/ {print $2}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.bim > ${TEMPDIR}/${SAMPLE}.non_integer_chr.txt
+    plink --bfile ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes \
+    --exclude ${TEMPDIR}/${SAMPLE}.non_integer_chr.txt \
+    --make-bed \
+    --allow-extra-chr \
+    --out ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes
+    mv ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.log ${LOG}/non_integer_chromosome_12.log
 
     # Create a text file with population information (sampleID, ancestry)
     awk 'FNR==NR{a[$2]=$3;next}{print $0,a[$2]?a[$2]:"-"}' ${REF_1KGENOMES_POP} ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.fam \
@@ -252,7 +254,7 @@ fi
     awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.pop
 
     # Run admixture
-    admixture32 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.bed 26 --supervised -j${CPU}
+    admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_1KGenomes.bed 26 --supervised -j${CPU}
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.Q ${SAMPLE_SUP}
     mv ${SAMPLE}.admixture_ref_1KGenomes.26.P ${SAMPLE_SUP}
 
