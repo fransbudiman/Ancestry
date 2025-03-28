@@ -10,15 +10,18 @@ OUTPUT="default_batch_job%j.out"
 NTASKS=1
 TIME="02:00:00"
 CPU=40
+THREADS=10
 
 # Parse command-line arguments
 # DIR has to be the full path to the directory
 # REF has to be the reference dataset type (hapmap, 1kgenomes, grafpop)
 # CONFIG has to be the path to the configuration directory
-while getopts "r:d:" opt; do
+while getopts "r:d:c:t:" opt; do
   case $opt in
     r) REF=$OPTARG ;;
     d) DIR=$OPTARG ;;
+    c) CPU=$OPTARG ;;
+    t) THREADS=$OPTARG ;;
     \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
   esac
 done
@@ -60,5 +63,5 @@ find "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r data
     echo "VCF_PATH: $VCF_PATH"
 
     # Submit the job by running the submit_job.sh script
-    bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c 10"
+    bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
 done
