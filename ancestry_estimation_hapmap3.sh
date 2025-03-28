@@ -107,7 +107,7 @@ fi
   plink2 --bfile ${TEMPDIR}/${SAMPLE}_original \
       --make-bed \
       --set-all-var-ids @:\#:\$r:\$a \
-      --new-id-max-allele-len 1000 \
+      --new-id-max-allele-len 1000 missing \
       --allow-extra-chr \
       --out ${TEMPDIR}/${SAMPLE}
 
