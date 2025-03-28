@@ -2,10 +2,8 @@
 
 set -x
 
-# Delete in production!
 # TEMPDIR is temporary and everythin inside will be deleted at the end of the script
 # The final data will be in REFDIR under the name of 1KGenomes.admixture
-
 # Paths
 CONFIG=${PWD}/Configuration
 REFDIR=${CONFIG}/Reference_1KGenomes
@@ -20,7 +18,7 @@ cd ${TEMPDIR}
 
 {
     ##### SETUP FOR 1000Genomes phase 3 DATA #####
-    # Note that these links may be outdated. 
+    # Note that these links may be outdated.
     # Visit  https://www.cog-genomics.org/plink/2.0/resources#1kg_phase3 for the most recent links
     pgen="https://www.dropbox.com/s/j72j6uciq5zuzii/all_hg38.pgen.zst?dl=1"
     pvar="https://www.dropbox.com/scl/fi/fn0bcm5oseyuawxfvkcpb/all_hg38_rs.pvar.zst?rlkey=przncwb78rhz4g4ukovocdxaz&dl=1"
@@ -41,7 +39,7 @@ cd ${TEMPDIR}
     plink2 --pfile ${TEMPDIR}/all_phase3 \
         --max-alleles 2 \
         --make-bed \
-        --memory 7000 \
+        --allow-extra-chr \
         --out ${TEMPDIR}/all_phase3
     mv ${TEMPDIR}/plink2.log ${REFDIR}/log
 
@@ -51,7 +49,6 @@ cd ${TEMPDIR}
         --set-all-var-ids @:\#:\$r:\$a \
         --new-id-max-allele-len 997 \
         --allow-extra-chr \
-        --memory 7000 \
         --out ${TEMPDIR}/all_phase3_replace_var_ids
     mv ${TEMPDIR}/all_phase3_replace_var_ids.LOG ${LOG}
 
@@ -66,7 +63,6 @@ cd ${TEMPDIR}
     --make-bed \
     --allow-extra-chr \
     --rm-dup force-first \
-    --memory 7000 \
     --out ${REFDIR}/1KGenomes.admixture
 
     mv ${REFDIR}/1KGenomes.admixture.LOG ${LOG}
