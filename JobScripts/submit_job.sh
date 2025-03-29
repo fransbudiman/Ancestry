@@ -36,6 +36,7 @@ JOB_SCRIPT=$(mktemp)  # Create a temporary file
 # Check is admixture is installed in the bin directory
 if ! which admixture > /dev/null 2>&1; then
   echo "admixture not found, downloading..."
+  mkdir -p $HOME/bin
 
   # Download admixture (Replace URL with actual download link)
   curl -L -o $HOME/bin/admixture https://dalexander.github.io/admixture/binaries/admixture_linux-1.3.0.tar.gz
