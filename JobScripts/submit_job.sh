@@ -66,7 +66,7 @@ echo "OUTPUT: $OUTPUT"
 
 cat <<EOF > $JOB_SCRIPT
 #!/bin/bash
-#SBATCH --nodes=2
+#SBATCH --nodes=1
 #SBATCH --job-name=$JOBNAME
 #SBATCH --output=${OUTPUT}
 #SBATCH --ntasks=$NTASKS
