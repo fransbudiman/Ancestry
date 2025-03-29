@@ -46,10 +46,15 @@ cat <<EOF > $JOB_SCRIPT
 export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
 
-source $SCRATCH/startup.sh
+module load NiaEnv
+module load plink/1.90b6
+module load plink2/2.00a3
 module load gcc/8.3.0
 module load intel/2019u4
 module load r/4.1.2
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Run the actual script with arguments
 
