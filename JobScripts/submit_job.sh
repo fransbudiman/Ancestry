@@ -56,6 +56,11 @@ module load r/4.1.2
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# install required R packages
+packages <- c("tidyverse", "dplyr", "RColorBrewer", "reshape2", "ggtext")
+install_if_missing <- function(p) { if (!require(p, character.only = TRUE)) install.packages(p, lib="~/R/library") }
+lapply(packages, install_if_missing)
+
 # Run the actual script with arguments
 
 # Pick which script to run based on the argument
