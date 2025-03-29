@@ -32,6 +32,27 @@ fi
 # Create a temporary SBATCH script
 JOB_SCRIPT=$(mktemp)  # Create a temporary file
 
+# Ensure all libraries and executables are complete before running ancestry estimation
+# Check is admixture is installed in the bin directory
+if ! which admixture > /dev/null 2>&1; then
+  echo "admixture not found, downloading..."
+
+  # Download admixture (Replace URL with actual download link)
+  curl -L -o $HOME/bin/admixture https://dalexander.github.io/admixture/binaries/admixture_linux-1.3.0.tar.gz
+  tar -xvzf $HOME/bin/admixture.tar.gz -C $HOME/bin/
+  
+  # Make it executable
+  chmod +x $HOME/bin/admixture
+
+else
+  echo "admixture is already installed."
+fi
+
+# Check if R libraries are installed
+packages <- c("tidyverse", "dplyr", "RColorBrewer", "reshape2", "ggtext")
+install_if_missing <- function(p) { if (!require(p, character.only = TRUE)) install.packages(p, lib="~/R/library") }
+lapply(packages, install_if_missing)
+
 # Debugging prints
 echo "OUTPUT: $OUTPUT"
 
@@ -55,11 +76,6 @@ module load r/4.1.2
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-# install required R packages
-packages <- c("tidyverse", "dplyr", "RColorBrewer", "reshape2", "ggtext")
-install_if_missing <- function(p) { if (!require(p, character.only = TRUE)) install.packages(p, lib="~/R/library") }
-lapply(packages, install_if_missing)
 
 # Run the actual script with arguments
 
