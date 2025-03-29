@@ -50,9 +50,16 @@ else
 fi
 
 # Check if R libraries are installed
-packages <- c("tidyverse", "dplyr", "RColorBrewer", "reshape2", "ggtext")
-install_if_missing <- function(p) { if (!require(p, character.only = TRUE)) install.packages(p, lib="~/R/library") }
-lapply(packages, install_if_missing)
+packages=("tidyverse" "dplyr" "RColorBrewer" "reshape2" "ggtext")
+
+# Check if each package is installed and install if necessary
+for package in "${packages[@]}"
+do
+    # Check if the package is installed
+    Rscript -e "if (!require('$package', character.only = TRUE)) install.packages('$package')"
+    # Load the package to ensure it's available
+    Rscript -e "library($package)"
+done
 
 # Debugging prints
 echo "OUTPUT: $OUTPUT"
