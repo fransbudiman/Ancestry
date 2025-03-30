@@ -52,6 +52,9 @@ fi
 # Check if R libraries are installed
 packages=("tidyverse" "dplyr" "RColorBrewer" "reshape2" "ggtext")
 
+# Load the R module
+module load r/4.4.0
+
 # Check if each package is installed and install if necessary
 for package in "${packages[@]}"
 do
