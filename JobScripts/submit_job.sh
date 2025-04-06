@@ -2,7 +2,7 @@
 
 # Default values
 JOBNAME="default_job"
-OUTPUT="/scratch/j/jle/frans/default_job_%j.out"
+OUTPUT="job_log/default_job_%j.out"
 NTASKS=1
 TIME="48:00:00"
 CPU=40
