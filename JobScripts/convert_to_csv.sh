@@ -51,7 +51,7 @@ do
     # get the sample name
     SAMPLE=$(echo $FILE_NAME | cut -d'_' -f1)
     # get the ancestry values
-    ANCESTRY=$(awk 'NR==1 {for (i=1; i<=NF; i++) header[i]=$i} NR==2 {for (i=1; i<=NF; i++) printf "%s=%.6f%s", header[i], $i, (i<NF ? ", " : "")}' $file)
+    ANCESTRY=$(awk 'NR==1 {for (i=1; i<=NF; i++) header[i]=$i} NR==2 {for (i=1; i<=NF; i++) printf "%s=%.6f%s", header[i], $i, (i<NF ? " " : "")}' $file)
     echo "debugging: $ANCESTRY"
     # get top 1 ancestry values
     top_ancestry=$(echo "${ANCESTRY}" | cut -d'=' -f1)
