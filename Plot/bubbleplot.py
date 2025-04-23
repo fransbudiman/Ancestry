@@ -1,3 +1,7 @@
+# requires installing Kaleido and Plotly
+# pip install -U kaleido
+# pip install plotly
+
 # for data manipulation and analysis
 import pandas as pd
 # for plotting 
@@ -5,19 +9,24 @@ import plotly.express as px
 # for counting pairs
 from collections import Counter
 
-import os
-print("Current working directory:", os.getcwd())
+# function to read data from csv file
+def read_csv(file_path, col1, col2):
+    pairlist = []
+    dataframe = pd.read_csv(file_path, engine='python')
+    col1 = "HapMap3_Ancestry"
+    col2 = "HapMap3_Erika"
+    target = dataframe[[col1, col2]]
+    for index, row in target.iterrows():
+        result_tuple = (row[col1], row[col2])
+        pairlist.append(result_tuple)
+    return pairlist
 
-# some sample data for testing. Change to reading from file later
-rawdata = [
-    ("CEU","CEU"), ("CEU","CHB"), ("CEU","JPT"), ("CHB","JPT"),
-    ("CHB","CEU"), ("CHB","CHB"), ("CHB","JPT"), ("CHB","CHB")
-]
+sampledata = read_csv("C:\\UNIFRANS\\Work\\JLE\\temp\\GENCOV_Result_Frans.csv", "HapMap3_Ancestry", "HapMap3_Erika")
 
-xaxis = "Hapmap3"
-yaxis = "1000 Genomes"
+xaxis = "HapMap3_Frans"
+yaxis = "HapMap3_Erika"
 
-counter = Counter(rawdata)
+counter = Counter(sampledata)
 print(counter) # for debugging remove later
 # counter is a dictionary with tuples as keys and counts as values
 
@@ -32,7 +41,11 @@ fig = px.scatter(
     y=yaxis, 
     size="count",
     size_max=60,
-    title=f"Bubble Plot for {xaxis} vs {yaxis}"
+    title=f"Bubble Plot for {xaxis} vs {yaxis}",
+    category_orders={
+        xaxis: sorted(df[xaxis].dropna().unique()),
+        yaxis: sorted(df[yaxis].dropna().unique(), reverse=True)
+    }
 )
 
 fig.show()
