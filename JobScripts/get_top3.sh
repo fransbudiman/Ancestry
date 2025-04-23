@@ -24,6 +24,7 @@ if [ ! -d "$TRANSFER_DIR" ]; then
   mkdir -p $TRANSFER_DIR
 fi
 
+TRANSFER_DIR=$(realpath "$TRANSFER_DIR")
 cd $SEARCH_DIR
 
 echo "Searching for .Q files in $SEARCH_DIR"
