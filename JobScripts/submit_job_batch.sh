@@ -8,9 +8,9 @@
 JOBNAME="default_batch_job"
 OUTPUT="default_batch_job%j.out"
 NTASKS=1
-TIME="02:00:00"
+TIME="48:00:00"
 CPU=40
-THREADS=10
+THREADS=40
 
 # Parse command-line arguments
 # DIR has to be the full path to the directory
@@ -46,8 +46,9 @@ if [ ! -d "$DIR" ]; then
   exit 1
 fi
 
+echo "Debugging: $DIR and $OUTPUT"
 # Loop through the directory
-find "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r dataFile; do
+find -L "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r dataFile; do
     # Unzip the file if it hasn't been unzipped
     if [ ! -f "${dataFile%.gz}" ]; then
         echo "Unzipping: $dataFile"

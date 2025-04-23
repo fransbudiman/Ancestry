@@ -2,9 +2,9 @@
 
 # Default values
 JOBNAME="default_job"
-OUTPUT="/scratch/j/jle/frans/default_job_%j.out"
+OUTPUT="job_log/default_job_%j.out"
 NTASKS=1
-TIME="24:00:00"
+TIME="48:00:00"
 CPU=40
 
 # Parse command-line arguments
@@ -41,7 +41,7 @@ if ! which admixture > /dev/null 2>&1; then
   # Download admixture (Replace URL with actual download link)
   curl -L -o $HOME/bin/admixture https://dalexander.github.io/admixture/binaries/admixture_linux-1.3.0.tar.gz
   tar -xvzf $HOME/bin/admixture.tar.gz -C $HOME/bin/
-  
+
   # Make it executable
   chmod +x $HOME/bin/admixture
 
@@ -49,20 +49,14 @@ else
   echo "admixture is already installed."
 fi
 
-# Check if R libraries are installed
-packages=("tidyverse" "dplyr" "RColorBrewer" "reshape2" "ggtext")
-
 # Load the R module
+module load StdEnv/2023
 module load r/4.4.0
 
-# Check if each package is installed and install if necessary
-for package in "${packages[@]}"
-do
-    # Check if the package is installed
-    Rscript -e "if (!require('$package', character.only = TRUE)) install.packages('$package')"
-    # Load the package to ensure it's available
-    Rscript -e "library($package)"
-done
+R_LIB=~/R/library
+mkdir -p "$R_LIB"
+export R_LIBS_USER="$R_LIB"
+export LIBRARY_PATH="$R_LIB"
 
 # Debugging prints
 echo "OUTPUT: $OUTPUT"
@@ -75,15 +69,17 @@ cat <<EOF > $JOB_SCRIPT
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
+#SBATCH --mem=300G
+
 export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/plink2:$PATH
 
-module load NiaEnv
-module load plink/1.90b6
-module load plink2/2.00a3
-module load gcc/8.3.0
-module load intel/2019u4
-module load r/4.1.2
+module load StdEnv/2020
+module load plink/1.9b_6.21-x86_64
+module load r/4.4.0
+module load gcc/13.3
+module load intel/2024.2.0
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -122,5 +118,4 @@ sbatch $JOB_SCRIPT
 cat $JOB_SCRIPT
 
 # Removes script when the script exits
-trap "rm -f $JOB_SCRIPT" EXIT  
-
+trap "rm -f $JOB_SCRIPT" EXIT

@@ -37,7 +37,7 @@ if [ -f "$CSV" ]; then
 else
     touch $CSV
     # create the header for the csv file
-    echo "Sample, Hapmap, Hapmap, Hapmap, 1KGenomes, 1KGenomes, 1KGenomes, GrafPop" > $CSV
+    echo "Study_ID+N1Q1A1:R1, TCAG_ID, Sex assigned at birth, #SNPs, GD1, GD2, GD3, GD4, P_f (%), P_e (%), P_a (%), PopID, GrafPop_Ancestry, HapMap3_Ancestry, HapMap3_Top3, 1KGenomes_Ancestry, 1KGenomes_Top3, Self-reported_Ancestry" > $CSV
 fi
 
 
@@ -53,31 +53,32 @@ do
     # get the ancestry values
     ANCESTRY=$(awk 'NR==1 {for (i=1; i<=NF; i++) header[i]=$i} NR==2 {for (i=1; i<=NF; i++) printf "%s=%.6f%s", header[i], $i, (i<NF ? ", " : "")}' $file)
     echo "debugging: $ANCESTRY"
-    IFS=', ' read -ra ANCESTRY_ARRAY <<< "$ANCESTRY"
+    # get top 1 ancestry values
+    top_ancestry=$(echo "${ANCESTRY}" | cut -d'=' -f1)
     # Search if the sample is already in the csv file
     if ! grep -q "$SAMPLE" "$CSV"; then
-        echo "$SAMPLE, -, -, -, -, -, -, -, -, -" >> $CSV
+        echo "cannot find sample in csv file, adding it"
+        # Add the sample to the csv file
+        echo "-, $SAMPLE, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -" >> $CSV
     fi
 
     # Store sample ancestry value in an array
     row=$(grep -n "$SAMPLE" "$CSV")
     line_number=$(echo $row | cut -d':' -f1)
-    IFS=',' read -r -a row_array <<< "$row"
+    sample_data=$(echo $row | cut -d':' -f2-)
+    IFS=',' read -r -a row_array <<< "$sample_data"
     echo "debugging: ${row_array[*]}"
     
     # Add the ancestry values to the csv file based on the reference dataset
     if [[ $REF == "Hapmap" ]]; then
-        row_array[1]=${ANCESTRY_ARRAY[0]}
-        row_array[2]=${ANCESTRY_ARRAY[1]}
-        row_array[3]=${ANCESTRY_ARRAY[2]}
+        row_array[13]=${top_ancestry}
+        row_array[14]=${ANCESTRY}
     elif [[ $REF == "1KGenomes" ]]; then
-        row_array[4]=${ANCESTRY_ARRAY[0]}
-        row_array[5]=${ANCESTRY_ARRAY[1]}
-        row_array[6]=${ANCESTRY_ARRAY[2]}
+        row_array[15]=${top_ancestry}
+        row_array[16]=${ANCESTRY}
     elif [[ $REF == "GrafPop" ]]; then
-        row_array[7]=${ANCESTRY_ARRAY[0]}
-        row_array[8]=${ANCESTRY_ARRAY[1]}
-        row_array[9]=${ANCESTRY_ARRAY[2]}
+        # to implement ...
+        echo "not implemented"
     fi
 
     # Update the csv file with the new ancestry values
