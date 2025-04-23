@@ -59,7 +59,7 @@ do
     if ! grep -q "$SAMPLE" "$CSV"; then
         echo "cannot find sample in csv file, adding it"
         # Add the sample to the csv file
-        echo "-, $SAMPLE, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -" >> $CSV
+        echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
     fi
 
     # Store sample ancestry value in an array
