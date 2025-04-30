@@ -57,5 +57,6 @@ PNG_FILE=$3
     # Run grafpop and PlotGrafPopResults.pl
     grafpop "$VCF_FILE" "$RESULT_FILE"
     PlotGrafPopResults.pl "$RESULT_FILE" "$PNG_FILE"
+    SaveSamples.pl "$RESULT_FILE" "XXXXXX.txt"
 
 } 2>&1 | tee -a grafpop.log
