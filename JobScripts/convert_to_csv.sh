@@ -40,11 +40,13 @@ else
     echo "Study_ID+N1Q1A1:R1, TCAG_ID, Sex assigned at birth, #SNPs, GD1, GD2, GD3, GD4, P_f (%), P_e (%), P_a (%), PopID, GrafPop_Ancestry, HapMap3_Ancestry, HapMap3_Top3, 1KGenomes_Ancestry, 1KGenomes_Top3, Self-reported_Ancestry" > $CSV
 fi
 
-
+touch "missing_samples.txt"
+counter=0
 
 # Search for all files that contain a *top3.txt file
 for file in $(find $TARGET_DIR -type f -name "*top3.txt")
 do
+    counter=$((counter+1))
     echo "Processing file: $file"
     # get the name of the file
     FILE_NAME=$(basename $file)
@@ -52,7 +54,7 @@ do
     SAMPLE=$(echo $FILE_NAME | cut -d'_' -f1)
     # get the ancestry values
     ANCESTRY=$(awk 'NR==1 {for (i=1; i<=NF; i++) header[i]=$i} NR==2 {for (i=1; i<=NF; i++) printf "%s=%.6f%s", header[i], $i, (i<NF ? " " : "")}' $file)
-    echo "debugging: $ANCESTRY"
+    # echo "debugging: $ANCESTRY"
     # get top 1 ancestry values
     top_ancestry=$(echo "${ANCESTRY}" | cut -d'=' -f1)
     # Search if the sample is already in the csv file
@@ -60,6 +62,7 @@ do
         echo "cannot find sample in csv file, adding it"
         # Add the sample to the csv file
         echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
+        echo "$SAMPLE" >> "missing_samples.txt"
     fi
 
     # Store sample ancestry value in an array
@@ -67,7 +70,7 @@ do
     line_number=$(echo $row | cut -d':' -f1)
     sample_data=$(echo $row | cut -d':' -f2-)
     IFS=',' read -r -a row_array <<< "$sample_data"
-    echo "debugging: ${row_array[*]}"
+    # echo "debugging: ${row_array[*]}"
     
     # Add the ancestry values to the csv file based on the reference dataset
     if [[ $REF == "Hapmap" ]]; then
@@ -86,3 +89,5 @@ do
     sed -i "${line_number}s/.*/$new_row/" $CSV
     
 done
+
+echo "Processed $counter files."
