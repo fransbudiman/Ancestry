@@ -86,7 +86,7 @@ do
 
     # Update the csv file with the new ancestry values
     new_row=$(IFS=,; echo "${row_array[*]}")
-    sed -i "${line_number}s/.*/$new_row/" $CSV
+    sed -i "${line_number}s|.*|$new_row|" "$CSV"
     
 done
 
