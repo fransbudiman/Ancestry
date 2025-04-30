@@ -13,18 +13,18 @@ from collections import Counter
 def read_csv(file_path, col1, col2):
     pairlist = []
     dataframe = pd.read_csv(file_path, engine='python')
-    col1 = "HapMap3_Ancestry"
-    col2 = "HapMap3_Erika"
+    col1 = "HapMap3_Erika"
+    col2 = "Self-reported_Ancestry"
     target = dataframe[[col1, col2]]
     for index, row in target.iterrows():
         result_tuple = (row[col1], row[col2])
         pairlist.append(result_tuple)
     return pairlist
 
-sampledata = read_csv("C:\\UNIFRANS\\Work\\JLE\\temp\\GENCOV_Result_Frans.csv", "HapMap3_Ancestry", "HapMap3_Erika")
+sampledata = read_csv("C:\\UNIFRANS\\Work\\JLE\\temp\\GENCOV_Result1.csv", "HapMap3_Erika", "Self-reported_Ancestry")
 
-xaxis = "HapMap3_Frans"
-yaxis = "HapMap3_Erika"
+xaxis = "HapMap3_Erika"
+yaxis = "Self-reported_Ancestry"
 
 counter = Counter(sampledata)
 print(counter) # for debugging remove later
