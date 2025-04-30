@@ -41,6 +41,7 @@ PNG_FILE=$3
         mv GrafPop /opt/
         sudo ln -s /opt/GrafPop/grafpop /usr/local/bin/grafpop
         sudo ln -s /opt/GrafPop/PlotGrafPopResults.pl /usr/local/bin/PlotGrafPopResults.pl
+        sudo ln -s /opt/GrafPop/SaveSamples.pl /usr/local/bin/SaveSamples.pl
     fi
 
     # Check perl path and update PlotGrafPopResults.pl shebang
