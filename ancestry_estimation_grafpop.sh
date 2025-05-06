@@ -57,7 +57,7 @@ done
         echo "perl not found. Please install perl."
         exit 1
     else
-        sed -i "1s|^#!.*|#!$PERL_PATH|" /opt/GrafPop/PlotGrafPopResults.pl
+        sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
         sudo cpan GD::Text
         sudo cpan GD::Graph
     fi
