@@ -64,6 +64,14 @@ done
     #     sudo cpan GD::Graph
     # fi
 
+    PERL_PATH=$(which perl)
+    if [ -z "$PERL_PATH" ]; then
+        echo "perl not found. Please install perl."
+        exit 1
+    else
+        sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/SaveSamples.pl"
+    fi
+
     SAMPLE_NAME="${VCF_FILE%%.*}"
     PNG_FILE="${SAMPLE_NAME}_ancestry.png"
     RESULT_FILE="${SAMPLE_NAME}_temp.txt"
