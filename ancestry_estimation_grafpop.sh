@@ -4,11 +4,11 @@
 set -x
 
 # Set arguments
-while getopts ":v:r:" flag
+while getopts ":v:d:" flag
 do
     case "${flag}" in
         v) VCF_FILE=${OPTARG};;
-        r) RESULT_FILE=${OPTARG};;
+        d) OUTDIR=${OPTARG};;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         :)  echo "Missing argument for -$OPTARG" >&2; exit 1 ;;
     esac
@@ -68,8 +68,11 @@ done
     SAVE_FILE="${SAMPLE_NAME}_ancestry.txt"
     
     # Run grafpop and PlotGrafPopResults.pl
-    grafpop "$VCF_FILE" "$RESULT_FILE"
-    PlotGrafPopResults.pl "$RESULT_FILE" "$PNG_FILE"
-    SaveSamples.pl "$RESULT_FILE" "$SAVE_FILE"
+    grafpop "$VCF_FILE" "$OUTDIR/$RESULT_FILE"
+    PlotGrafPopResults.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$PNG_FILE"
+    SaveSamples.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$SAVE_FILE"
+
+    #remove temporary files
+    rm "$OUTDIR/$RESULT_FILE"
 
 } 2>&1 | tee -a grafpop.log
