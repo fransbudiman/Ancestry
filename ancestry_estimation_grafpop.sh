@@ -14,7 +14,6 @@ do
     esac
 done
 
-
 {
     # Check if arguments are empty
     if [ -z "$VCF_FILE" ] || [ -z "$OUTDIR" ]; then
@@ -22,33 +21,34 @@ done
         exit 1
     fi
 
+    mkdir -p $OUTDIR
+
     # Check if grafpop and PlotGrafPopResults.pl executable exist
-    if [ ! -f "/usr/local/bin/grafpop" ]; then
+# Check if grafpop and PlotGrafPopResults.pl executable exist
+    if [ ! -f "$HOME/bin/grafpop" ]; then
         echo "grafpop executable not found. Installing it . . ."
-        mkdir GrafPop
-        cd GrafPop
-        # Download and extract GrafPop
+        mkdir -p "$HOME/bin"
+
+        # Check if wget is installed
         if ! command -v wget &> /dev/null; then
             echo "wget is not installed. Please install it."
             exit 1
         fi
-        
-        wget https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/GetZip.cgi?zip_name=GrafPop1.0.tar.gz
+
+        # Set download path
+        ZIP_PATH="$HOME/bin/GrafPop1.0.tar.gz"
+        wget -O "$ZIP_PATH" "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/GetZip.cgi?zip_name=GrafPop1.0.tar.gz"
         if [ $? -ne 0 ]; then
             echo "Error downloading GrafPop."
             exit 1
         fi
 
-        tar -xvzf GetZip.cgi?zip_name=GrafPop1.0.tar.gz
+        # Extract directly into $HOME/bin
+        tar -xvzf "$ZIP_PATH" -C "$HOME/bin"
         if [ $? -ne 0 ]; then
             echo "Error extracting the tarball."
             exit 1
         fi
-        cd ..
-        mv GrafPop /opt/
-        sudo ln -s /opt/GrafPop/grafpop /usr/local/bin/grafpop
-        sudo ln -s /opt/GrafPop/PlotGrafPopResults.pl /usr/local/bin/PlotGrafPopResults.pl
-        sudo ln -s /opt/GrafPop/SaveSamples.pl /usr/local/bin/SaveSamples.pl
     fi
 
     # Check perl path and update PlotGrafPopResults.pl shebang
