@@ -49,6 +49,24 @@ else
   echo "admixture is already installed."
 fi
 
+# Check if grafpop is installed
+if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
+  echo "grafpop not found, downloading..."
+  mkdir -p $HOME/bin
+
+  # Download grafpop
+  curl -L -o $HOME/bin/grafpop.tar.gz https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/GetZip.cgi?zip_name=GrafPop1.0.tar.gz
+  tar -xvzf $HOME/bin/grafpop.tar.gz -C $HOME/bin/
+
+  # Make it executable
+  chmod +x $HOME/bin/grafpop
+  chmod +x $HOME/bin/PlotGrafPopResults.pl
+  chmod +x $HOME/bin/SaveSamples.pl
+
+else
+  echo "grafpop is already installed."
+fi
+
 # Load the R module
 module load StdEnv/2023
 module load r/4.4.0
