@@ -4,13 +4,20 @@
 set -x
 
 # Set arguments
-VCF_FILE=$1
-RESULT_FILE=$2
-PNG_FILE=$3
+while getopts ":v:r:p:" flag
+do
+    case "${flag}" in
+        v) VCF_FILE=${OPTARG};;
+        r) RESULT_FILE=${OPTARG};;
+        \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
+        :)  echo "Missing argument for -$OPTARG" >&2; exit 1 ;;
+    esac
+done
+
 
 {
     # Check if arguments are empty
-    if [ -z "$VCF_FILE" ] || [ -z "$RESULT_FILE" ] || [ -z "$PNG_FILE" ]; then
+    if [ -z "$VCF_FILE" ] || [ -z "$RESULT_FILE" ]; then
         echo "Missing arguments. Please provide VCF file, result file, and PNG file."
         exit 1
     fi
@@ -55,9 +62,14 @@ PNG_FILE=$3
         sudo cpan GD::Graph
     fi
 
+    SAMPLE_NAME="${VCF_FILE%%.*}"
+    PNG_FILE="${SAMPLE_NAME}_ancestry.png"
+    RESULT_FILE="${SAMPLE_NAME}_temp.txt"
+    SAVE_FILE="${SAMPLE_NAME}_ancestry.txt"
+    
     # Run grafpop and PlotGrafPopResults.pl
     grafpop "$VCF_FILE" "$RESULT_FILE"
     PlotGrafPopResults.pl "$RESULT_FILE" "$PNG_FILE"
-    SaveSamples.pl "$RESULT_FILE" "XXXXXX.txt"
+    SaveSamples.pl "$RESULT_FILE" "$SAVE_FILE"
 
 } 2>&1 | tee -a grafpop.log
