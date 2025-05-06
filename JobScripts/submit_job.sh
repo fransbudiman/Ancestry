@@ -62,6 +62,7 @@ if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
   chmod +x $HOME/bin/grafpop
   chmod +x $HOME/bin/PlotGrafPopResults.pl
   chmod +x $HOME/bin/SaveSamples.pl
+  
 else
   echo "grafpop is already installed."
 fi
