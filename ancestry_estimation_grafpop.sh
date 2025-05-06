@@ -4,7 +4,7 @@
 set -x
 
 # Set arguments
-while getopts ":v:r:p:" flag
+while getopts ":v:r:" flag
 do
     case "${flag}" in
         v) VCF_FILE=${OPTARG};;
