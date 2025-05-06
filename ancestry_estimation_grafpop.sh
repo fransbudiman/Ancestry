@@ -17,8 +17,8 @@ done
 
 {
     # Check if arguments are empty
-    if [ -z "$VCF_FILE" ] || [ -z "$RESULT_FILE" ]; then
-        echo "Missing arguments. Please provide VCF file, result file, and PNG file."
+    if [ -z "$VCF_FILE" ] || [ -z "$OUTDIR" ]; then
+        echo "Missing arguments. Please provide VCF file and result directory."
         exit 1
     fi
 
