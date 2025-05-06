@@ -51,16 +51,18 @@ done
         fi
     fi
 
+    export PATH=$HOME/bin:$PATH
+
     # Check perl path and update PlotGrafPopResults.pl shebang
-    PERL_PATH=$(which perl)
-    if [ -z "$PERL_PATH" ]; then
-        echo "perl not found. Please install perl."
-        exit 1
-    else
-        sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
-        sudo cpan GD::Text
-        sudo cpan GD::Graph
-    fi
+    # PERL_PATH=$(which perl)
+    # if [ -z "$PERL_PATH" ]; then
+    #     echo "perl not found. Please install perl."
+    #     exit 1
+    # else
+    #     sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
+    #     sudo cpan GD::Text
+    #     sudo cpan GD::Graph
+    # fi
 
     SAMPLE_NAME="${VCF_FILE%%.*}"
     PNG_FILE="${SAMPLE_NAME}_ancestry.png"
@@ -69,7 +71,7 @@ done
     
     # Run grafpop and PlotGrafPopResults.pl
     grafpop "$VCF_FILE" "$OUTDIR/$RESULT_FILE"
-    PlotGrafPopResults.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$PNG_FILE"
+    # PlotGrafPopResults.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$PNG_FILE"
     SaveSamples.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$SAVE_FILE"
 
     #remove temporary files
