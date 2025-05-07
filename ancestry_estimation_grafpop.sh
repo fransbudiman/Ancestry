@@ -74,10 +74,12 @@ done
         echo "cpanm not found. Installing App::cpanminus locally . . ."
         curl -L https://cpanmin.us | perl - --self-upgrade --local-lib=$HOME/perl5 App::cpanminus
     fi
-    
+
     # might be useless remove later
     # export PERL_MB_OPT="--install_base \"$HOME/perl5\""
     # export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+
+    module load gcc/13.2.0
 
     if ! perl -MGD -e 1 2>/dev/null; then
     echo "GD module not found. Installing it . . ."
@@ -89,6 +91,8 @@ done
     fi
     if ! perl -MGD::Graph -e '1' 2>/dev/null; then
         echo "GD::Graph not found. Installing it . . ."
+        # somehow this is needed because otherwise MakeMaker does not work
+        cpanm --local-lib=~/perl5 --force ExtUtils::MakeMaker
         cpanm --local-lib="$HOME/perl5" "GD::Graph"
     fi
 
