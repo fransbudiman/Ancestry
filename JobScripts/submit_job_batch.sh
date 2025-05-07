@@ -62,7 +62,7 @@ find -L "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r d
     echo "VCF: $VCF"
     echo "VCF_PATH: $VCF_PATH"
 
-    if [$REF == "1kgenomes" || $REF == "hapmap"]; then
+    if [ "$REF" = "1kgenomes" ] || [ "$REF" = "hapmap" ]; then
         # Submit the job by running the submit_job.sh script
         bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
     else
