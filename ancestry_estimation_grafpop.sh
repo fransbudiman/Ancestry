@@ -7,7 +7,7 @@ set -x
 while getopts ":v:d:" flag
 do
     case "${flag}" in
-        v) VCF_FILE=${OPTARG};;
+        v) VCF_PATH=${OPTARG};;
         d) OUTDIR=${OPTARG};;
         \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
         :)  echo "Missing argument for -$OPTARG" >&2; exit 1 ;;
@@ -16,7 +16,7 @@ done
 
 {
     # Check if arguments are empty
-    if [ -z "$VCF_FILE" ] || [ -z "$OUTDIR" ]; then
+    if [ -z "$VCF_PATH" ] || [ -z "$OUTDIR" ]; then
         echo "Missing arguments. Please provide VCF file and result directory."
         exit 1
     fi
@@ -95,12 +95,13 @@ done
 
     chmod +x "$HOME/bin/SaveSamples.pl"
 
+    VCF_FILE="${VCF_PATH##*/}"
     SAMPLE_NAME="${VCF_FILE%%.*}"
     PNG_FILE="${SAMPLE_NAME}_ancestry.png"
     RESULT_FILE="${SAMPLE_NAME}_temp.txt"
     SAVE_FILE="${SAMPLE_NAME}_ancestry.txt"
     
-    grafpop "$VCF_FILE" "$OUTDIR/$RESULT_FILE"
+    grafpop "$VCF_PATH" "$OUTDIR/$RESULT_FILE"
     # PlotGrafPopResults.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$PNG_FILE"
     SaveSamples.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$SAVE_FILE"
 
