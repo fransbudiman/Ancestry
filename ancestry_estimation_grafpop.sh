@@ -51,30 +51,22 @@ done
         fi
     fi
 
+    # Add grafpop, PlotGrafPopResults.pl, and SaveSamples.pl to PATH
     export PATH="$HOME/bin:$PATH"
-    export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
     export PATH="$HOME/perl5/bin:$PATH"
+    export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
 
     export LANG=C.UTF-8
     export LC_ALL=C.UTF-8
-
-    # Check perl path and update PlotGrafPopResults.pl shebang
-    # PERL_PATH=$(which perl)
-    # if [ -z "$PERL_PATH" ]; then
-    #     echo "perl not found. Please install perl."
-    #     exit 1
-    # else
-    #     sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
-    #     sudo cpan GD::Text
-    #     sudo cpan GD::Graph
-    # fi
 
     PERL_PATH=$(which perl)
     if [ -z "$PERL_PATH" ]; then
         echo "perl not found. Please install perl."
         exit 1
     else
+        # Update the shebang line in the perl scripts
         sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/SaveSamples.pl"
+        sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
     fi
 
     # install GD::Text and GD::Graph if not already installed
@@ -82,9 +74,10 @@ done
         echo "cpanm not found. Installing App::cpanminus locally . . ."
         curl -L https://cpanmin.us | perl - --self-upgrade --local-lib=$HOME/perl5 App::cpanminus
     fi
-
-    export PERL_MB_OPT="--install_base \"$HOME/perl5\""
-    export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+    
+    # might be useless remove later
+    # export PERL_MB_OPT="--install_base \"$HOME/perl5\""
+    # export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
     if ! perl -MGD -e 1 2>/dev/null; then
     echo "GD module not found. Installing it . . ."
