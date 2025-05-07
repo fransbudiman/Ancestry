@@ -75,10 +75,7 @@ done
         curl -L https://cpanmin.us | perl - --self-upgrade --local-lib=$HOME/perl5 App::cpanminus
     fi
 
-    # might be useless remove later
-    # export PERL_MB_OPT="--install_base \"$HOME/perl5\""
-    # export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
-
+    # gcc is required for installing GD modules
     module load gcc/13.2.0
 
     if ! perl -MGD -e 1 2>/dev/null; then
@@ -103,7 +100,6 @@ done
     RESULT_FILE="${SAMPLE_NAME}_temp.txt"
     SAVE_FILE="${SAMPLE_NAME}_ancestry.txt"
     
-    # Run grafpop and PlotGrafPopResults.pl
     grafpop "$VCF_FILE" "$OUTDIR/$RESULT_FILE"
     # PlotGrafPopResults.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$PNG_FILE"
     SaveSamples.pl "$OUTDIR/$RESULT_FILE" "$OUTDIR/$SAVE_FILE"
