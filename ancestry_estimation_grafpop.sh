@@ -73,6 +73,10 @@ done
     fi
 
     # install GD::Text and GD::Graph if not already installed
+    if ! command -v cpanm &> /dev/null; then
+        echo "cpanm not found. Installing App::cpanminus locally . . ."
+        curl -L https://cpanmin.us | perl - --self-upgrade --local-lib=$HOME/perl5 App::cpanminus
+    fi
 
     export PERL_MB_OPT="--install_base \"$HOME/perl5\""
     export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
