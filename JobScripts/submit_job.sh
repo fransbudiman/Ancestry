@@ -34,7 +34,7 @@ JOB_SCRIPT=$(mktemp)  # Create a temporary file
 
 # Ensure all libraries and executables are complete before running ancestry estimation
 # Check is admixture is installed in the bin directory
-if ! which admixture > /dev/null 2>&1; then
+if [[ "$REF" == "1kgenomes" || "$REF" == "hapmap" ]] && ! command -v admixture > /dev/null 2>&1; then
   echo "admixture not found, downloading..."
   mkdir -p $HOME/bin
 
@@ -49,6 +49,18 @@ else
   echo "admixture is already installed."
 fi
 
+if [[ "$REF" == "1kgenomes" || "$REF" == "hapmap" ]]; then
+  # Load the R module
+  module load StdEnv/2023
+  module load r/4.4.0
+
+  R_LIB=~/R/library
+  mkdir -p "$R_LIB"
+  export R_LIBS_USER="$R_LIB"
+  export LIBRARY_PATH="$R_LIB"
+fi
+
+
 # Check if grafpop is installed
 if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
   echo "grafpop not found, downloading..."
@@ -62,19 +74,11 @@ if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
   chmod +x $HOME/bin/grafpop
   chmod +x $HOME/bin/PlotGrafPopResults.pl
   chmod +x $HOME/bin/SaveSamples.pl
-  
+  export PATH="$HOME/bin:$PATH"
+
 else
   echo "grafpop is already installed."
 fi
-
-# Load the R module
-module load StdEnv/2023
-module load r/4.4.0
-
-R_LIB=~/R/library
-mkdir -p "$R_LIB"
-export R_LIBS_USER="$R_LIB"
-export LIBRARY_PATH="$R_LIB"
 
 # Debugging prints
 echo "OUTPUT: $OUTPUT"
