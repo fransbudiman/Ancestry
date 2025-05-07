@@ -51,7 +51,7 @@ done
         fi
     fi
 
-    export PATH=$HOME/bin:$PATH
+    export PATH="$HOME/bin:$PATH"
 
     # Check perl path and update PlotGrafPopResults.pl shebang
     # PERL_PATH=$(which perl)
@@ -71,6 +71,22 @@ done
     else
         sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/SaveSamples.pl"
     fi
+
+    # install GD::Text and GD::Graph if not already installed
+
+    export PERL_MB_OPT="--install_base \"$HOME/perl5\""
+    export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
+
+    if ! perl -MGD::Text -e '1' 2>/dev/null; then
+        echo "GD::Text not found. Installing it . . ."
+        cpanm --local-lib="$HOME/perl5" "GD::Text"
+    fi
+    if ! perl -MGD::Graph -e '1' 2>/dev/null; then
+        echo "GD::Graph not found. Installing it . . ."
+        cpanm --local-lib="$HOME/perl5" "GD::Graph"
+    fi
+
+    chmod +x "$HOME/bin/SaveSamples.pl"
 
     SAMPLE_NAME="${VCF_FILE%%.*}"
     PNG_FILE="${SAMPLE_NAME}_ancestry.png"
