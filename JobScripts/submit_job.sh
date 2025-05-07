@@ -77,6 +77,12 @@ if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
   chmod +x $HOME/bin/PlotGrafPopResults.pl
   chmod +x $HOME/bin/SaveSamples.pl
 
+else
+  echo "grafpop is already installed."
+fi
+
+# ensure that shebang lines are correct
+if [ "$REF" = "grafpop" ]; then
   PERL_PATH=$(which perl)
     if [ -z "$PERL_PATH" ]; then
         echo "perl not found. Please install perl."
@@ -86,10 +92,6 @@ if [ "$REF" = "grafpop" ] && ! which grafpop > /dev/null 2>&1; then
         sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/SaveSamples.pl"
         sed -i "1s|^#!.*|#!$PERL_PATH|" "$HOME/bin/PlotGrafPopResults.pl"
     fi
-
-
-else
-  echo "grafpop is already installed."
 fi
 
 # Debugging prints
