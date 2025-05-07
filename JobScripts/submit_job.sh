@@ -32,6 +32,8 @@ fi
 # Create a temporary SBATCH script
 JOB_SCRIPT=$(mktemp)  # Create a temporary file
 
+export PATH="$HOME/bin:$PATH"
+
 # Ensure all libraries and executables are complete before running ancestry estimation
 # Check is admixture is installed in the bin directory
 if [[ "$REF" == "1kgenomes" || "$REF" == "hapmap" ]] && ! command -v admixture > /dev/null 2>&1; then
