@@ -15,7 +15,6 @@ THREADS=40
 # Parse command-line arguments
 # DIR has to be the full path to the directory
 # REF has to be the reference dataset type (hapmap, 1kgenomes, grafpop)
-# CONFIG has to be the path to the configuration directory
 while getopts "r:d:c:t:" opt; do
   case $opt in
     r) REF=$OPTARG ;;
@@ -63,6 +62,11 @@ find -L "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r d
     echo "VCF: $VCF"
     echo "VCF_PATH: $VCF_PATH"
 
-    # Submit the job by running the submit_job.sh script
-    bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
+    if [$REF == "1kgenomes" || $REF == "hapmap"]; then
+        # Submit the job by running the submit_job.sh script
+        bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
+    else
+        bash submit_job.sh -j $JOBNAME -o $OUTPUT -n $NTASKS -t "00:30:00" -c $CPU -r $REF -a "-v ${VCF_PATH} -d ${PWD}/Result"
+    fi
+
 done
