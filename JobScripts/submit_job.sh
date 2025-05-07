@@ -103,7 +103,6 @@ cat <<EOF > $JOB_SCRIPT
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
-#SBATCH --mem=300G
 
 export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
