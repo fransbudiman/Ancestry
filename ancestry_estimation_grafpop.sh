@@ -81,6 +81,10 @@ done
     export PERL_MB_OPT="--install_base \"$HOME/perl5\""
     export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
 
+    if ! perl -MGD -e 1 2>/dev/null; then
+    echo "GD module not found. Installing it . . ."
+    cpanm --local-lib="$HOME/perl5" GD
+    fi
     if ! perl -MGD::Text -e '1' 2>/dev/null; then
         echo "GD::Text not found. Installing it . . ."
         cpanm --local-lib="$HOME/perl5" "GD::Text"
