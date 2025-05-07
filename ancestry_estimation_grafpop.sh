@@ -52,6 +52,8 @@ done
     fi
 
     export PATH="$HOME/bin:$PATH"
+    export PERL5LIB="$HOME/perl5/lib/perl5:$PERL5LIB"
+    export PATH="$HOME/perl5/bin:$PATH"
 
     # Check perl path and update PlotGrafPopResults.pl shebang
     # PERL_PATH=$(which perl)
