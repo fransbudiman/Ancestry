@@ -46,6 +46,4 @@ while read sample; do
     fi
 done < $RESULT_DIR/missing_samples.txt
 
-
-
-
+rm $RESULT_DIR/missing_samples.txt
