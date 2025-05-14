@@ -120,7 +120,8 @@ if [ "$REF" = "GrafPop" ]; then
     # row_array[10]=${P_a}
     # row_array[11]=${PopID}
     # row_array[12]=${Computed_Pop}
-
+    
+    PopID=$(echo "$PopID" | tr -d '\r\n')
     row_array+=("$PopID")
 
     # Update the csv file with the new ancestry values
