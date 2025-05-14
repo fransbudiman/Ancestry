@@ -39,7 +39,7 @@ rm $RESULT_DIR/*_temp.txt
 mkdir -p $RESULT_DIR/missing_samples
 while read sample; do
     vcf_path=$(find $ORIGINAL_DIR -type f -name "$sample*.vcf")
-    if [ -n $vcf_path]; then
+    if [ -n "$vcf_path" ]; then
         ln -s $vcf_path $RESULT_DIR/missing_samples/
     else
         echo "No VCF file found for sample $sample"
