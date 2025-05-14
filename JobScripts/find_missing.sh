@@ -26,8 +26,9 @@ if [ ! -d "$RESULT_DIR" ]; then
     exit 1
 fi
 
-ls $ORIGINAL_DIR/* -type d | awk -F/ '{print $(NF-1)}' > $RESULT_DIR/all_samples_temp.txt
-ls $RESULT_DIR/*_ancestry.txt -type f | awk -F/ '{print $(NF-1)}' | sed 's/_ancestry.txt//' > $RESULT_DIR/completed_samples_temp.txt
+find "$ORIGINAL_DIR" -type d | awk -F/ '{print $(NF-1)}' > "$RESULT_DIR/all_samples_temp.txt"
+find "$RESULT_DIR" -type f -name '*_ancestry.txt' | awk -F/ '{print $(NF-1)}' | sed 's/_ancestry.txt//' > "$RESULT_DIR/completed_samples_temp.txt"
+
 
 # Compare the two files and find missing samples
 comm -23 <(sort $RESULT_DIR/all_samples_temp.txt) <(sort $RESULT_DIR/completed_samples_temp.txt) > $RESULT_DIR/missing_samples.txt
