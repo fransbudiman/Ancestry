@@ -32,7 +32,7 @@ find "$RESULT_DIR" -type f -name '*_ancestry.txt' | awk -F/ '{print $(NF-1)}' | 
 
 # Compare the two files and find missing samples
 comm -23 <(sort $RESULT_DIR/all_samples_temp.txt) <(sort $RESULT_DIR/completed_samples_temp.txt) > $RESULT_DIR/missing_samples.txt
-rm $RESULT_DIR/*_temp.txt
+# rm $RESULT_DIR/*_temp.txt
 
 cat $RESULT_DIR/missing_samples.txt
 
