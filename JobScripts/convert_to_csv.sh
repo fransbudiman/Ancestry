@@ -96,6 +96,7 @@ if [ "$REF" = "GrafPop" ]; then
   # Search for all files that contain a *_ancestry.txt file
   for file in $(find $TARGET_DIR -type f -name "*_ancestry.txt")
   do
+    counter=$((counter+1))
     read Sub_Id _ _ GD1 GD2 GD3 GD4 P_f P_e P_a PopID Computed_Pop < <(tail -n 1 $file)
     if ! grep -q "$Sub_Id" "$CSV"; then
         echo "cannot find sample in csv file, adding it"
@@ -126,6 +127,5 @@ if [ "$REF" = "GrafPop" ]; then
     new_row=$(IFS=,; echo "${row_array[*]}")
     sed -i "${line_number}s|.*|$new_row|" "$CSV"
   done
-
-
-echo "Processed $counter files."
+  echo "Processed $counter files."
+fi
