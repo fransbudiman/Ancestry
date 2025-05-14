@@ -32,8 +32,20 @@ find "$RESULT_DIR" -type f -name '*_ancestry.txt' | awk -F/ '{print $NF}' | sed 
 
 # Compare the two files and find missing samples
 comm -23 <(sort $RESULT_DIR/all_samples_temp.txt) <(sort $RESULT_DIR/completed_samples_temp.txt) > $RESULT_DIR/missing_samples.txt
-# rm $RESULT_DIR/*_temp.txt
+rm $RESULT_DIR/*_temp.txt
 
-cat $RESULT_DIR/missing_samples.txt
+# cat $RESULT_DIR/missing_samples.txt
+
+mkdir -p $RESULT_DIR/missing_samples
+while read sample; do
+    vcf_path=$(find $ORIGINAL_DIR -type f -name "$sample*.vcf")
+    if [ -n $vcf_path]; then
+        ln -s $vcf_path $RESULT_DIR/missing_samples/
+    else
+        echo "No VCF file found for sample $sample"
+    fi
+done < $RESULT_DIR/missing_samples.txt
+
+
 
 
