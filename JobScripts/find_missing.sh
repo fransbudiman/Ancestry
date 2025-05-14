@@ -26,7 +26,7 @@ if [ ! -d "$RESULT_DIR" ]; then
     exit 1
 fi
 
-find "$ORIGINAL_DIR" -type d | awk -F/ '{print $NF}'> "$RESULT_DIR/all_samples_temp.txt"
+find "$ORIGINAL_DIR" -mindepth 1 -maxdepth 1 -type d | awk -F/ '{print $NF}'> "$RESULT_DIR/all_samples_temp.txt"
 find "$RESULT_DIR" -type f -name '*_ancestry.txt' | awk -F/ '{print $NF}' | sed 's/_ancestry.txt//' > "$RESULT_DIR/completed_samples_temp.txt"
 
 
