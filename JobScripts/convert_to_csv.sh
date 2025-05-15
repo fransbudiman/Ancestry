@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sanitize() {
+  echo "$1" | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+}
+
 # Default values
 TARGET_DIR="."
 CSV="ancestry_output.csv"
@@ -97,7 +101,7 @@ if [ "$REF" = "GrafPop" ]; then
   # make a copy of the csv file
   cp $CSV "${CSV}_backup.csv"
   CSV="${CSV}_backup.csv"
-  
+
   # Search for all files that contain a *_ancestry.txt file
   for file in $(find $TARGET_DIR -type f -name "*_ancestry.txt")
   do
@@ -127,6 +131,7 @@ if [ "$REF" = "GrafPop" ]; then
     # row_array[12]=${Computed_Pop}
 
     PopID=$(echo "$PopID" | tr -d '\r\n')
+    PopID=$(sanitize "$PopID")
     row_array+=("$PopID")
 
     # Update the csv file with the new ancestry values
