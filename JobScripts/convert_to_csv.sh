@@ -130,9 +130,9 @@ if [ "$REF" = "GrafPop" ]; then
     # row_array[10]=${P_a}
     # row_array[11]=${PopID}
     # row_array[12]=${Computed_Pop}
+    echo "debugging: $PopID"
 
     PopID=$(echo "$PopID" | tr -d '\r\n')
-    echo "debugging: $PopID"
     PopID=$(sanitize "$PopID")
     
     row_array+=("$PopID")
