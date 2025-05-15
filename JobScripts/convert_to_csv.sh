@@ -133,7 +133,7 @@ if [ "$REF" = "GrafPop" ]; then
 
     PopID=$(echo "$PopID" | tr -d '\r\n')
     PopID=$(sanitize "$PopID")
-    row_array+=("ANJING")
+    row_array+=("$PopID")
 
     # Update the csv file with the new ancestry values
     new_row=$(IFS=,; echo "${row_array[*]}")
