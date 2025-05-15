@@ -107,6 +107,9 @@ if [ "$REF" = "GrafPop" ]; then
   do
     counter=$((counter+1))
     read Sub_Id _ _ GD1 GD2 GD3 GD4 P_f P_e P_a PopID Computed_Pop < <(tail -n 1 $file)
+
+    # debug print all variables
+    echo "debugging: $Sub_Id $GD1 $GD2 $GD3 $GD4 $P_f $P_e $P_a $PopID $Computed_Pop"
     if ! grep -q "$Sub_Id" "$CSV"; then
         echo "cannot find sample in csv file, adding it"
         # Add the sample to the csv file
@@ -130,7 +133,6 @@ if [ "$REF" = "GrafPop" ]; then
     # row_array[10]=${P_a}
     # row_array[11]=${PopID}
     # row_array[12]=${Computed_Pop}
-    echo "debugging: $PopID"
 
     PopID=$(echo "$PopID" | tr -d '\r\n')
     PopID=$(sanitize "$PopID")
