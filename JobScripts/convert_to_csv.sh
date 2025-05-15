@@ -106,7 +106,7 @@ if [ "$REF" = "GrafPop" ]; then
   for file in $(find $TARGET_DIR -type f -name "*_ancestry.txt")
   do
     counter=$((counter+1))
-    read -r Sub_Id _ _ GD1 GD2 GD3 GD4 P_f P_e P_a PopID Computed_Pop < <(tail -n 1 $file)
+    read -r Sub_Id _ GD1 GD2 GD3 GD4 P_f P_e P_a PopID Computed_Pop < <(tail -n 1 $file)
 
     # debug print all variables
     echo "debugging: $Sub_Id $GD1 $GD2 $GD3 $GD4 $P_f $P_e $P_a $PopID $Computed_Pop"
