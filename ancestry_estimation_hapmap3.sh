@@ -251,14 +251,14 @@ fi
   awk '{print $7}' ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.txt > ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.pop
 
   # NOTE: I am somehow unable to run the admixture 64-bit. I keep on getting segmentation fault error, even after reducing the sample size. Downloading admixture 32-bit version works fine.
-  admixture32 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
+  admixture ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.bed 11 --supervised -j${CPU}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.Q ${SAMPLE_SUP}
   mv ${SAMPLE}.admixture_ref_HAPMAP3.11.P ${SAMPLE_SUP}
 
   rm -r ${TEMPDIR}
 
   # Graphical outputs
-  Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_HapMap3 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.11.Q \
-    ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.fam ${REF_HAPMAP3_POP} "HapMap3" ${CONFIG}
+#   Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_HapMap3 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.11.Q \
+#     ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.fam ${REF_HAPMAP3_POP} "HapMap3" ${CONFIG}
 
 } 2>&1 | tee ${LOG}/ancestry.log

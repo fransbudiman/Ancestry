@@ -14,12 +14,27 @@
 # - REF.csv
 # - REF_ID2Pop.txt
 
+# modules:
+# NIA:
+# export R_LIBS_USER=~/R/library
+# export PATH=$HOME/bin:$PATH
+# module load NiaEnv
+# module load plink/1.90b6
+# module load plink2/2.00a3
+# module load gcc/8.3.0
+# module load intel/2019u4
+# module load r/4.1.2
+
+# NAR:
+
+
 # we will use echo to print the loading steps and submit_job.sh will use eval to run the printed commands.
 
 HOSTNAME=$(hostname)
 if [[ $HOSTNAME == nia* ]]; then
     # Setup for Niagara cluster
     echo "DEBUG: Setting up environment for Niagara cluster"
+
 elif [[ $HOSTNAME == narval* ]]; then
     # Setup for Narval cluster
     echo "DEBUG: Setting up environment for Narval cluster"
