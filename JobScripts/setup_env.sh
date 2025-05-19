@@ -17,10 +17,10 @@
 # we will use echo to print the loading steps and submit_job.sh will use eval to run the printed commands.
 
 HOSTNAME=$(hostname)
-if [[ $HOSTNAME == nia*]]; then
+if [[ $HOSTNAME == nia* ]]; then
     # Setup for Niagara cluster
     echo "DEBUG: Setting up environment for Niagara cluster"
-elif [[ $HOSTNAME == narval*]]; then
+elif [[ $HOSTNAME == narval* ]]; then
     # Setup for Narval cluster
     echo "DEBUG: Setting up environment for Narval cluster"
 else
