@@ -72,11 +72,11 @@ if [ ! -f "admixture_pie.R" ]; then
     wget https://raw.githubusercontent.com/fransbudiman/Ancestry/refs/heads/main/admixture_pie.R
 fi
 
-if [ ! -f "${CONFIG}/1kgenomes.csv" ]; then
+if [ ! -f "${CONFIG}/hapmap3.csv" ]; then
     wget https://raw.githubusercontent.com/jlelabs/Ancestry/refs/heads/main/Configuration/hapmap3.csv -P ${CONFIG}
 fi
 
-if [ ! -f "${CONFIG}/Genomes1000_ID2Pop.txt" ]; then
+if [ ! -f "${CONFIG}/HapMap_ID2Pop.txt" ]; then
     wget https://raw.githubusercontent.com/jlelabs/Ancestry/refs/heads/main/Configuration/HapMap_ID2Pop.txt -P ${CONFIG}
 fi
 
