@@ -257,7 +257,7 @@ fi
 
   rm -r ${TEMPDIR}
 
-#  Graphical outputs
+#   Graphical outputs
 #   Rscript admixture_pie.R ${SAMPLEDIR} ${SAMPLE}_HapMap3 ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.11.Q \
 #     ${SAMPLE_SUP}/${SAMPLE}.admixture_ref_HAPMAP3.fam ${REF_HAPMAP3_POP} "HapMap3" ${CONFIG}
 
