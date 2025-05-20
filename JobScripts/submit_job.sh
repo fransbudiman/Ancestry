@@ -23,6 +23,8 @@ done
 shift $((OPTIND -1))  # Remove parsed options from arguments
 echo "Remaining arguments: $@"
 
+mkdir -p $(dirname "$OUTPUT")  # Create the output directory if it doesn't exist
+
 # Ensure REF is set before using it
 if [ -z "$REF" ]; then
   echo "Error: Reference dataset (-r) is required."
@@ -51,16 +53,16 @@ else
   echo "admixture is already installed."
 fi
 
-if [[ "$REF" == "1kgenomes" || "$REF" == "hapmap" ]]; then
-  # Load the R module
-  module load StdEnv/2023
-  module load r/4.4.0
+# if [[ "$REF" == "1kgenomes" || "$REF" == "hapmap" ]]; then
+#   # Load the R module
+#   module load StdEnv/2023
+#   module load r/4.4.0
 
-  R_LIB=~/R/library
-  mkdir -p "$R_LIB"
-  export R_LIBS_USER="$R_LIB"
-  export LIBRARY_PATH="$R_LIB"
-fi
+#   R_LIB=~/R/library
+#   mkdir -p "$R_LIB"
+#   export R_LIBS_USER="$R_LIB"
+#   export LIBRARY_PATH="$R_LIB"
+# fi
 
 
 # Check if grafpop is installed
