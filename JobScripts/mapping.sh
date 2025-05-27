@@ -8,7 +8,7 @@
 # File 2 will only be used if file 1 fails to map the sample.
 # This is because Group0 samples from the shared directory does not have the group0.txt file.
 
-while getopts "m:s:" opt; do
+while getopts "m:s:o:" opt; do
   case $opt in
     m) MAPPING_DIR=$OPTARG ;;
     s) SAMPLE_DIR=$OPTARG ;;
