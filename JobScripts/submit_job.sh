@@ -1,17 +1,14 @@
 #!/bin/bash
 
 # Default values
-JOBNAME="default_job"
-OUTPUT="job_log/default_job_%j.out"
+OUTPUT="job_log"
 NTASKS=1
-TIME="48:00:00"
+TIME="24:00:00"
 CPU=40
 
 # Parse command-line arguments
-while getopts "j:o:n:t:c:a:r:" opt; do
+while getopts ":n:t:c:a:r:" opt; do
   case $opt in
-    j) JOBNAME=$OPTARG ;;
-    o) OUTPUT=$OPTARG ;;
     n) NTASKS=$OPTARG ;;
     t) TIME=$OPTARG ;;
     c) CPU=$OPTARG ;;
@@ -23,7 +20,7 @@ done
 shift $((OPTIND -1))  # Remove parsed options from arguments
 echo "Remaining arguments: $@"
 
-mkdir -p $(dirname "$OUTPUT")  # Create the output directory if it doesn't exist
+mkdir -p ${OUTPUT}  # Create the output directory if it doesn't exist
 
 # Ensure REF is set before using it
 if [ -z "$REF" ]; then
@@ -96,21 +93,18 @@ if [ "$REF" = "grafpop" ]; then
     fi
 fi
 
-# Debugging prints
-echo "OUTPUT: $OUTPUT"
-
 # get sample name from the argument
 NAME=$(echo "$ARG" | grep -oP '(?<=-i )\S+')
 echo $NAME
-# Get the result directory from the argument
-RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
-mkdir -p "$RESULT_DIR/SLURM_LOGS"
+# # Get the result directory from the argument
+# RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
+# mkdir -p "$RESULT_DIR/SLURM_LOGS"
 
 cat <<EOF > $JOB_SCRIPTs
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --job-name=${NAME}_slurm
-#SBATCH --output=${RESULT_DIR}/SLURM_LOGS/${NAME}_slurm_%j.out
+#SBATCH --output=${OUTPUT}/${NAME}_slurm_%j.out
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
