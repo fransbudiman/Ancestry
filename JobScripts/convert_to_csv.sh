@@ -66,8 +66,17 @@ for file in $(find $TARGET_DIR -type f -name "*top3.txt")
       if ! grep -q "$SAMPLE" "$CSV"; then
           echo "cannot find sample in csv file, adding it"
           # Add the sample to the csv file
-          echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
-          echo "$SAMPLE" >> "missing_samples.txt"
+          # differentiate is sample is named after TCAGID or StudyID
+          if [[ "$SAMPLE" == *-* ]]; then
+              echo "Sample is a TCAGID: $SAMPLE"
+              echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
+              echo "$SAMPLE" >> "missing_samples.txt"
+          else
+              echo "Sample is a StudyID: $SAMPLE"
+              echo "$SAMPLE,,,,,,,,,,,,,,,,," >> $CSV
+              echo "$SAMPLE" >> "missing_samples.txt"
+          fi
+          
       fi
 
       # Store sample ancestry value in an array
@@ -136,8 +145,9 @@ if [ "$REF" = "GrafPop" ]; then
     # row_array[10]=${P_a}
     # row_array[11]=${PopID}
     # row_array[12]=${Computed_Pop}
-    PopID=$(echo "$PopID" | tr -d '\r\n')
-    PopID=$(sanitize "$PopID")
+    
+    # PopID=$(echo "$PopID" | tr -d '\r\n')
+    # PopID=$(sanitize "$PopID")
     
     row_array+=("$PopID")
 
