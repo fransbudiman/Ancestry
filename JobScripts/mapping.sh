@@ -70,6 +70,6 @@ for sample in $(find "$SAMPLE_DIR" -type f -name "*.vcf.gz"); do
 
     echo "Renaming sample: $sample_name to $study_id"
     # Rename the sample
-    mv "$sample" "${OUTDIR}/${study_id}.vcf.gz"
+    cp "$sample" "${OUTDIR}/${study_id}.vcf.gz"
 
 done
