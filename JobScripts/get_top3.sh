@@ -34,12 +34,14 @@ for dir in $(find . -type f -name "*.Q" -exec dirname {} \; | sort -u)
 do
     echo "Processing directory: $dir"
     # get name of Q file
-    Q_FILE=$(find $dir -type f -name "*.Q" | head -n 1)
-    Q_BASENAME=$(basename "$Q_FILE")
-    head -1 $Q_FILE > ${Q_BASENAME}_sample_only.txt
+    Q_PATH=$(find $dir -type f -name "*.Q" | head -n 1)
+    Q_FILE=$(basename "$Q_PATH")
+    Q_BASENAME="${Q_FILE%%.*}"
+
+    head -1 $Q_PATH > ${Q_BASENAME}_sample_only.txt
     mv ${Q_BASENAME}_sample_only.txt $TRANSFER_DIR
     # merge the pop and Q files together
-    paste $dir/*.pop ${Q_FILE} > $dir/${Q_BASENAME}_merged.txt
+    paste $dir/*.pop ${Q_PATH} > $dir/${Q_BASENAME}_merged.txt
     # move this merged file to the transfer directory
     mv $dir/${Q_BASENAME}_merged.txt $TRANSFER_DIR
 done
@@ -64,33 +66,33 @@ do
     for pop in $(cat temp_pop.txt)
     do
     
-    clean_pop=$(echo "$pop" | tr -d '\r\n\t ')
+        clean_pop=$(echo "$pop" | tr -d '\r\n\t ')
 
-    # Now use awk with tab as the field separator and handle carriage returns
-    awk -v pop="$clean_pop" -F'\t' '{
-        # Remove carriage returns from the first field
-        gsub(/\r/, "", $1);
+        # Now use awk with tab as the field separator and handle carriage returns
+        awk -v pop="$clean_pop" -F'\t' '{
+            # Remove carriage returns from the first field
+            gsub(/\r/, "", $1);
+            
+            # Now compare the cleaned first field with the population
+            if ($1 == pop) {
+                for (i=2; i<=NF; i++) 
+                    printf "%s%s", $i, (i == NF ? "\n" : " ")
+            }
+        }' "$file" > "${clean_pop}_temp.txt"
+
+        awk '{for (i=1; i<=NF; i++) pop_array[i] += $i} END {for (i=1; i in pop_array; i++) printf "%s%s", pop_array[i], (i<NF ? " " : "\n")}' ${pop}_temp.txt > ${pop}_sum_temp.txt
+
+        echo "Sum of each column for population $pop"
+        cat ${pop}_sum_temp.txt
         
-        # Now compare the cleaned first field with the population
-        if ($1 == pop) {
-            for (i=2; i<=NF; i++) 
-                printf "%s%s", $i, (i == NF ? "\n" : " ")
-        }
-    }' "$file" > "${clean_pop}_temp.txt"
-
-    awk '{for (i=1; i<=NF; i++) pop_array[i] += $i} END {for (i=1; i in pop_array; i++) printf "%s%s", pop_array[i], (i<NF ? " " : "\n")}' ${pop}_temp.txt > ${pop}_sum_temp.txt
-
-    echo "Sum of each column for population $pop"
-    cat ${pop}_sum_temp.txt
-    
-    # find the column with the highest sum
-    MAX_COL=$(awk '{max=0; col=0;
-        for (i=1; i<=NF; i++){
-            if ($i > max) {max = $i; col = i;} 
-        }} END {print col}' ${pop}_sum_temp.txt)
-    # add the population to the array
-    POP_ORDER[$MAX_COL]=$pop
-    echo "Population $pop has the highest sum in column $MAX_COL"
+        # find the column with the highest sum
+        MAX_COL=$(awk '{max=0; col=0;
+            for (i=1; i<=NF; i++){
+                if ($i > max) {max = $i; col = i;} 
+            }} END {print col}' ${pop}_sum_temp.txt)
+        # add the population to the array
+        POP_ORDER[$MAX_COL]=$pop
+        echo "Population $pop has the highest sum in column $MAX_COL"
     done
     
 done
