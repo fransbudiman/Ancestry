@@ -106,7 +106,7 @@ echo $NAME
 RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
 mkdir -p "$RESULT_DIR/SLURM_LOGS"
 
-cat <<EOF > $JOB_SCRIPT
+cat <<EOF > $JOB_SCRIPTs
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --job-name=${NAME}_slurm
