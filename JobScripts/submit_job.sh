@@ -99,11 +99,18 @@ fi
 # Debugging prints
 echo "OUTPUT: $OUTPUT"
 
+# get sample name from the argument
+NAME=$(echo "$ARG" | grep -oP '(?<=-i )\S+')
+echo $NAME
+# Get the result directory from the argument
+RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
+mkdir -p "$RESULT_DIR/SLURM_LOGS"
+
 cat <<EOF > $JOB_SCRIPT
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --job-name=$JOBNAME
-#SBATCH --output=${OUTPUT}
+#SBATCH --job-name=${NAME}_slurm
+#SBATCH --output=${RESULT_DIR}/SLURM_LOGS/${NAME}_slurm_%j.out
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
