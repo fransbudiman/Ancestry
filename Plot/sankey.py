@@ -1,10 +1,21 @@
 import plotly.graph_objects as go
 import pandas as pd
+import argparse
+
+# default values
+source_label = "Self-reported_Ancestry"
+target_label = "Inferred_Ancestry"
+value_label = "Normalized_Proportions"
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--source', default=source_label, help='Source label for the Sankey diagram')
+parser.add_argument('-t', '--target', default=target_label, help='Target label for the Sankey diagram')
+parser.add_argument('-v', '--value', default=value_label, help='Value label for the Sankey diagram')
 
 df = pd.read_csv("C:\\UNIFRANS\\Work\\JLE\\Sankey\\test_mock.csv", engine='python')
-source_list = df["Self-reported_Ancestry"].tolist()
-target_list = df["Inferred_Ancestry"].tolist()
-value_list = df["Normalized_Proportions"].tolist()
+source_list = df[source_label].tolist()
+target_list = df[target_label].tolist()
+value_list = df[value_label].tolist()
 
 unique_source = list(set(source_list))
 unique_target = list(set(target_list))
