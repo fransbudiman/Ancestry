@@ -10,20 +10,25 @@ do
     esac
 done
 
-awk -F',' '
-BEGIN { OFS = " " }
+gawk '
+BEGIN {
+    # Match either quoted fields or unquoted fields
+    FPAT = "([^,]*)|(\"([^\"]|\"\")*\")"
+    OFS = " "
+}
 NR > 1 {
     id = $1
     self_reported = $14
     inferred = $19
 
-    # Skip if either is missing
-    if (self_reported == "" || inferred == "") {
-        next
-    }
+    # Remove surrounding quotes and whitespace
+    gsub(/^"|"$/, "", self_reported)
+    gsub(/^"|"$/, "", inferred)
+    gsub(/^"|"$/, "", id)
+    self_reported = gensub(/^ +| +$/, "", "g", self_reported)
+    inferred = gensub(/^ +| +$/, "", "g", inferred)
 
-    # Print if they are mismatched
-    if (self_reported != inferred) {
+    if (self_reported != "" && inferred != "" && self_reported != inferred) {
         print id, self_reported, inferred
     }
 }
