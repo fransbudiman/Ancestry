@@ -82,7 +82,7 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
         fi
 
         # Store sample ancestry value in an array
-        row=$(grep -n "$SAMPLE" "$CSV")
+        row=$(grep -nm1 "^$SAMPLE," "$CSV")
         line_number=$(echo $row | cut -d':' -f1)
         sample_data=$(echo $row | cut -d':' -f2-)
         IFS=',' read -r -a row_array <<< "$sample_data"
