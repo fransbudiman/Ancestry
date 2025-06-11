@@ -19,8 +19,9 @@ with open(args.csv_file, newline='', encoding='utf-8') as infile, \
             sample_id = row[0].strip()
             col14 = row[13].strip()
             col19 = row[18].strip()
+            col18 = row[17].strip()
 
-            if col14 and col19 and col14 != col19:
+            if col14 and col19 and col18 and col14 != col19:
                 outfile.write(f"{sample_id} {col14} {col19}\n")
         except IndexError:
             continue  # skip malformed lines
