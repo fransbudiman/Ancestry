@@ -3,8 +3,7 @@
 python3 -m venv $HOME/myenv
 source $HOME/myenv/bin/activate
 pip install --upgrade pip
-pip install kaleido
-pip install plotly
+pip install pandas plotly kaleido
 """
 
 
@@ -36,7 +35,7 @@ file_path = args.file
 # function to read data from csv file
 def read_csv(file_path, col1, col2):
     pairlist = []
-    dataframe = pd.read_csv(file_path, engine='python')
+    dataframe = pd.read_csv(file_path, engine='python', quotechar='"')
     target = dataframe[[col1, col2]]
     for index, row in target.iterrows():
         result_tuple = (row[col1], row[col2])
