@@ -1,6 +1,12 @@
 # requires installing Kaleido and Plotly
-# pip install -U kaleido
-# pip install plotly
+"""
+python3 -m venv $HOME/myenv
+source $HOME/myenv/bin/activate
+pip install --upgrade pip
+pip install kaleido
+pip install plotly
+"""
+
 
 # for data manipulation and analysis
 import pandas as pd
