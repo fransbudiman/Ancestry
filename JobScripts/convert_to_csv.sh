@@ -62,13 +62,16 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
         # echo "debugging: $ANCESTRY"
         # get top 1 ancestry values
         top_ancestry=$(echo "${ANCESTRY}" | cut -d'=' -f1)
+
+        SAMPLE=$(echo "$SAMPLE" | xargs)
+
         # Search if the sample is already in the csv file
         if ! grep -q "$SAMPLE" "$CSV"; then
             echo "cannot find sample in csv file, adding it"
             # Add the sample to the csv file
             # differentiate is sample is named after TCAGID or StudyID
             if [[ "$SAMPLE" == *-* ]]; then
-                SAMPLE=$(sanitize "$SAMPLE")
+                SAMPLE=$(sanitize "$SAMPLE")z
                 echo "Sample is a TCAGID: $SAMPLE"
                 echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
                 echo "$SAMPLE" >> "missing_samples.txt"
