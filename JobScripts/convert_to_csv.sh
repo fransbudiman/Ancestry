@@ -71,7 +71,7 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
             # Add the sample to the csv file
             # differentiate is sample is named after TCAGID or StudyID
             if [[ "$SAMPLE" == *-* ]]; then
-                SAMPLE=$(sanitize "$SAMPLE")z
+                SAMPLE=$(sanitize "$SAMPLE")
                 echo "Sample is a TCAGID: $SAMPLE"
                 echo ",$SAMPLE,,,,,,,,,,,,,,,," >> $CSV
                 echo "$SAMPLE" >> "missing_samples.txt"
