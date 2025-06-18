@@ -85,8 +85,14 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
         fi
 
         # Store sample ancestry value in an array
-        row=$(grep -nm1 "^$SAMPLE," "$CSV")
-        line_number=$(echo $row | cut -d':' -f1)
+        row=$(awk -F',' -v s="$SAMPLE" 'NR > 1 && ($1 == s || $2 == s) { print NR ":" $0; exit }' "$CSV")
+
+        if [ -z "$row" ]; then
+            echo "Error: could not find sample row in CSV, something went wrong."
+            continue
+        fi        line_number=$(echo $row | cut -d':' -f1)
+
+        
         sample_data=$(echo $row | cut -d':' -f2-)
         IFS=',' read -r -a row_array <<< "$sample_data"
         # echo "debugging: ${row_array[*]}"
