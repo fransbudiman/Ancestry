@@ -63,7 +63,7 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
         # get top 1 ancestry values
         top_ancestry=$(echo "${ANCESTRY}" | cut -d'=' -f1)
 
-        SAMPLE=$(echo "$SAMPLE" | xargs)
+        SAMPLE=$(echo "$SAMPLE" | tr -d '\r\n' | xargs)
 
         # Search if the sample is already in the csv file
         if ! grep -q "$SAMPLE" "$CSV"; then
