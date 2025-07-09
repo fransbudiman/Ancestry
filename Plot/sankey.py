@@ -12,6 +12,11 @@ parser.add_argument('-s', '--source', default=source_label, help='Source label f
 parser.add_argument('-t', '--target', default=target_label, help='Target label for the Sankey diagram')
 parser.add_argument('-v', '--value', default=value_label, help='Value label for the Sankey diagram')
 
+args = parser.parse_args()
+source_label = args.source
+target_label = args.target
+value_label = args.value
+
 df = pd.read_csv("C:\\UNIFRANS\\Work\\JLE\\Sankey\\test_mock.csv", engine='python')
 source_list = df[source_label].tolist()
 target_list = df[target_label].tolist()

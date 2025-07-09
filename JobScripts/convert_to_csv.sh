@@ -90,9 +90,10 @@ if [ "$REF" = "Hapmap" ] || [ "$REF" = "1KGenomes" ]; then
         if [ -z "$row" ]; then
             echo "Error: could not find sample row in CSV, something went wrong."
             continue
-        fi        line_number=$(echo $row | cut -d':' -f1)
-
+        fi        
         
+        line_number=$(echo $row | cut -d':' -f1)
+
         sample_data=$(echo $row | cut -d':' -f2-)
         IFS=',' read -r -a row_array <<< "$sample_data"
         # echo "debugging: ${row_array[*]}"

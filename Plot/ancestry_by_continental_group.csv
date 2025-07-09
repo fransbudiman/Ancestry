@@ -1,4 +1,4 @@
-Study_ID,GP_CG,HM_CG,1KG_CG,Self_Reported_CGXXX
+Study_ID,GP_CG,HM_CG,OKG_CG,Self_Reported_CG
 A69C0001,Europe,Europe,,Europe
 A69C0002,East Asia,,,
 A69C0003,East Asia,East Asia,,Southeast Asia
@@ -169,7 +169,7 @@ A69C0180,Africa,Africa,,Africa
 A69C0181,Africa,Africa,,Africa
 A69C0182,Europe,Europe,,
 A69C0184,Unassigned / Other,Europe,,Middle East
-A69C0185,Europe,Europe,,Europe
+A69C0185,Europe,Europe,Europe,Europe
 A69C0186,Europe,Europe,,Europe
 A69C0187,East Asia,East Asia,,East Asia
 A69C0188,Europe,Europe,,Europe
@@ -226,160 +226,160 @@ A69C0250,,,,
 A69C0251,Unassigned / Other,,,Americas
 A69C0252,Europe,Europe,,Europe
 A69C0253,Americas,Europe,,Middle East
-A69C0254,East Asia,East Asia,,East Asia
+A69C0254,East Asia,East Asia,East Asia,East Asia
 A69C0255,Americas,Europe,,Middle East
 A69C0256,Europe,Europe,,Europe
-A69C0257,Europe,Europe,,Europe
+A69C0257,Europe,Europe,Europe,Europe
 A69C0258,Africa,Africa,,Africa
 A69C0259,Europe,Europe,,Europe
 A69C0260,Europe,Europe,,Europe
 A69C0261,Europe,Europe,,Europe
 A69C0262,Unassigned / Other,Europe,,Middle East
-A69C0263,Americas,,,Americas
+A69C0263,Americas,,Europe,Americas
 A69C0264,Africa,Africa,,Africa
 A69C0265,Europe,Europe,,Europe
-A69C0266,East Asia,East Asia,,East Asia
-A69C0267,East Asia,East Asia,,East Asia
-A69C0268,East Asia,East Asia,,East Asia
-A69C0269,Americas,Europe,,Middle East
+A69C0266,East Asia,East Asia,East Asia,East Asia
+A69C0267,East Asia,East Asia,East Asia,East Asia
+A69C0268,East Asia,East Asia,East Asia,East Asia
+A69C0269,Americas,Europe,Europe,Middle East
 A69C0270,Americas,Europe,,
 A69C0271,Europe,Europe,,Europe
 A69C0272,Europe,Europe,,Europe
-A69C0273,South Asia,South Asia,,
+A69C0273,South Asia,South Asia,South Asia,
 A69C0275,Europe,Europe,,Europe
 A69C0276,Americas,Europe,,Europe
-A69C0277,Americas,Europe,,Middle East
+A69C0277,Americas,Europe,Europe,Middle East
 A69C0278,Europe,Europe,,Europe
-A69C0279,Europe,Europe,,Europe
+A69C0279,Europe,Europe,Europe,Europe
 A69C0280,East Asia / Oceania,East Asia,,Southeast Asia
 A69C0281,Europe,Europe,,Europe
 A69C0283,South Asia,South Asia,,South Asia
 A69C0284,Unassigned / Other,,,Americas
-A69C0285,Europe,Europe,,Europe
+A69C0285,Europe,Europe,Europe,Europe
 A69C0286,South Asia,South Asia,,South Asia
-A69C0287,Europe,Europe,,Europe
+A69C0287,Europe,Europe,Europe,Europe
 A69C0288,East Asia,East Asia,,
-A69C0289,Europe,Europe,,
+A69C0289,Europe,Europe,Europe,
 A69C0290,Europe,Europe,,Europe
-A69C0292,Americas,Europe,,Middle East
-A69C0293,Europe,Europe,,Europe
-A69C0294,Europe,Europe,,Europe
+A69C0292,Americas,Europe,Europe,Middle East
+A69C0293,Europe,Europe,Europe,Europe
+A69C0294,Europe,Europe,Europe,Europe
 A69C0295,Europe,Europe,,
-A69C0296,Europe,Europe,,
+A69C0296,Europe,Europe,Europe,
 A69C0298,Europe,Europe,,Europe
-A69C0299,Europe,Europe,,Europe
-A69C0300,Americas,Europe,,Other
+A69C0299,Europe,Europe,Europe,Europe
+A69C0300,Americas,Europe,Europe,Other
 A69C0303,Europe,Europe,,Europe
 A69C0304,Unassigned / Other,Europe,,Middle East
 A69C0305,Europe,Europe,,Europe
-A69C0306,Europe,Europe,,Europe
+A69C0306,Europe,Europe,Europe,Europe
 A69C0307,Europe,Europe,,Europe
 A69C0308,Europe,Europe,,Europe
 A69C0309,Europe,Europe,,Europe
-A69C0310,Americas,Europe,,Other
+A69C0310,Americas,Europe,Europe,Other
 A69C0311,Americas,Europe,,Other
 A69C0312,Europe,Europe,,Europe
 A69C0313,Europe,Europe,,Europe
 A69C0314,Europe,Europe,,Europe
-A69C0315,Europe,Europe,,Europe
-A69C0316,East Asia,East Asia,,Southeast Asia
+A69C0315,Europe,Europe,Europe,Europe
+A69C0316,East Asia,East Asia,East Asia,Southeast Asia
 A69C0318,Europe,Europe,,Europe
 A69C0321,Americas,Europe,,
 A69C0322,Europe,Europe,,
-A69C0323,Europe,Europe,,Europe
+A69C0323,Europe,Europe,Europe,Europe
 A69C0324,East Asia,Europe,,East Asia
 A69C0325,,,,
 A69C0326,Americas,Europe,,
-A69C0327,South Asia,South Asia,,
-A69C0327- Baseline,South Asia,,,
+A69C0327,South Asia,South Asia,South Asia,
+A69C0327- Baseline,South Asia,,South Asia,
 A69C0328,Europe,Europe,,Europe
 A69C0329,Europe,Europe,,
 A69C0330,Americas,Europe,,Middle East
 A69C0331,,,,
 A69C0332,Europe,Europe,,Europe / Middle East
-A69C0333,Americas,Europe,,Europe / Middle East
+A69C0333,Americas,Europe,Europe,Europe / Middle East
 A69C0334,Europe,Europe,,
 A69C0335,Europe,Europe,,Europe
-A69C0336,Europe,Europe,,Europe / Middle East
-A69C0337,Europe,Europe,,Europe
+A69C0336,Europe,Europe,Europe,Europe / Middle East
+A69C0337,Europe,Europe,Europe,Europe
 A69C0338,Europe,Europe,,Europe
-A69C0339,Europe,Europe,,
-A69C0340,East Asia / Oceania,East Asia,,
+A69C0339,Europe,Europe,Europe,
+A69C0340,East Asia / Oceania,East Asia,East Asia,
 A69C0341,Africa,Africa,,
 A69C0342,Europe,Europe,,Europe
-A69C0343,Europe,Europe,,Europe
+A69C0343,Europe,Europe,Europe,Europe
 A69C0344,Americas,Europe,,Other
-A69C0345,Europe,Europe,,Other
+A69C0345,Europe,Europe,Europe,Other
 A69C0346,East Asia,East Asia,,East Asia
 A69C0347,East Asia,East Asia,,East Asia
-A69C0348,Unassigned / Other,Europe,,Middle East
+A69C0348,Unassigned / Other,Europe,Europe,Middle East
 A69C0349,Unassigned / Other,Europe,,Middle East
-A69C0350,Unassigned / Other,Europe,,Middle East
-A69C0351,Americas,Europe,,Middle East
+A69C0350,Unassigned / Other,Europe,Europe,Middle East
+A69C0351,Americas,Europe,Europe,Middle East
 A69C0352,South Asia,South Asia,,South Asia
-A69C0353,Europe,Europe,,Europe
-A69C0354,Americas,Europe,,Middle East
+A69C0353,Europe,Europe,Europe,Europe
+A69C0354,Americas,Europe,Europe,Middle East
 A69C0355,East Asia,East Asia,,Southeast Asia
-A69C0356,South Asia,South Asia,,South Asia
+A69C0356,South Asia,South Asia,South Asia,South Asia
 A69C0357,Europe,Europe,,Europe
 A69C0358,Europe,Europe,,Europe
-A69C0359,Europe,Europe,,Europe
-A69C0360,Europe,Europe,,Europe
-A69C0361,Europe,Europe,,Europe
-A69C0362,Europe,Europe,,Europe
-A69C0363,Europe,Europe,,Europe
+A69C0359,Europe,Europe,Europe,Europe
+A69C0360,Europe,Europe,Europe,Europe
+A69C0361,Europe,Europe,Europe,Europe
+A69C0362,Europe,Europe,Europe,Europe
+A69C0363,Europe,Europe,Europe,Europe
 A69C0364,Europe,Europe,,Europe
-A69C0365,East Asia / Oceania,East Asia,,Southeast Asia
+A69C0365,East Asia / Oceania,East Asia,East Asia,Southeast Asia
 A69C0366,Europe,Europe,,Europe
 A69C0367,Europe,Europe,,
-A69C0368,Americas,Europe,,Middle East
+A69C0368,Americas,Europe,Europe,Middle East
 A69C0369,South Asia,South Asia,,South Asia
-A69C0371,Europe,Europe,,Europe
-A69C0374,East Asia,East Asia,,East Asia
-A69C0375,Americas,Europe,,Middle East
-A69C0376,Europe,Europe,,Europe
-A69C0378,Europe,Europe,,Europe
+A69C0371,Europe,Europe,Europe,Europe
+A69C0374,East Asia,East Asia,East Asia,East Asia
+A69C0375,Americas,Europe,Europe,Middle East
+A69C0376,Europe,Europe,Europe,Europe
+A69C0378,Europe,Europe,Europe,Europe
 A69C0379,Americas,Europe,,Other
 A69C0380,,,,
 A69C0381,Europe,Europe,,Europe
 A69C0382,East Asia,East Asia,,East Asia
-A69C0383,Europe,Europe,,Europe / Middle East
+A69C0383,Europe,Europe,Europe,Europe / Middle East
 A69C0384,East Asia,East Asia,,
-A69C0385,East Asia / Oceania,East Asia,,
+A69C0385,East Asia / Oceania,East Asia,East Asia,
 A69C0386,Europe,Europe,,Europe
-A69C0387,East Asia,East Asia,,East Asia
-A69C0388,Europe,Europe,,Europe
+A69C0387,East Asia,East Asia,East Asia,East Asia
+A69C0388,Europe,Europe,Europe,Europe
 A69C0389,Europe,Europe,,Europe
-A69C0390,Unassigned / Other,Europe,,Middle East
-A69C0393,Unassigned / Other,Europe,,Middle East
+A69C0390,Unassigned / Other,Europe,Europe,Middle East
+A69C0393,Unassigned / Other,Europe,Europe,Middle East
 A69C0394,Europe,Europe,,Europe
-A69C0395,South Asia,South Asia,,South Asia
+A69C0395,South Asia,South Asia,South Asia,South Asia
 A69C0396,Americas,Europe,,Other
 A69C0397,South Asia,South Asia,,South Asia
 A69C0398,Europe,Europe,,Europe
-A69C0399,Americas,Europe,,Middle East
-A69C0401,Europe,Europe,,Europe
+A69C0399,Americas,Europe,Europe,Middle East
+A69C0401,Europe,Europe,Europe,Europe
 A69C0404,Europe,Europe,,Europe
-A69C0405,Europe,Europe,,Europe / Middle East
+A69C0405,Europe,Europe,Europe,Europe / Middle East
 A69C0406,Africa,Africa,,
 A69C0407,Europe,Europe,,Europe
 A69C0408,Europe,Europe,,Europe
-A69C0409,Europe,Europe,,Europe
-A69C0410,Europe,Europe,,
-A69C0411,Europe,Europe,,Europe / Middle East
+A69C0409,Europe,Europe,Europe,Europe
+A69C0410,Europe,Europe,Europe,
+A69C0411,Europe,Europe,Europe,Europe / Middle East
 A69C0412,Americas,Europe,,Europe / Middle East
 A69C0413,Europe,Europe,,Europe / Middle East
 A69C0414,Europe,Europe,,Europe
 A69C0415,Europe,Europe,,Europe
-A69C0416,Europe,Europe,,Europe
+A69C0416,Europe,Europe,Europe,Europe
 A69C0417,Americas,Europe,,Europe / Middle East
 A69C0418,Unassigned / Other,Europe,,Middle East
 A69C0419,Europe,Europe,,Europe
 A69C0420,East Asia,East Asia,,East Asia
 A69C0421,Europe,Europe,,Europe / Middle East
 A69C0422,Europe,Europe,,Europe
-A69C0423,Europe,Europe,,Europe
-A69C0425,Americas,,,Americas
+A69C0423,Europe,Europe,Europe,Europe
+A69C0425,Americas,,Americas,Americas
 A69C0426,Europe,Europe,,Europe
 A69C0427,Americas,Europe,,Europe / Middle East
 A69C0428,Europe,Europe,,Europe
@@ -401,9 +401,9 @@ A69C0443,East Asia / Oceania,East Asia,,
 A69C0444,Unassigned / Other,Europe,,Middle East
 A69C0445,South Asia,South Asia,,South Asia
 A69C0446,Americas,Europe,,Europe
-A69C0447,Americas,,,
+A69C0447,Americas,,Americas,
 A69C0448,South Asia,South Asia,,
-A69C0449,Africa,Africa,,
+A69C0449,Africa,Africa,Africa,
 A69C0450,Europe,Europe,,
 A69C0451,Europe,Europe,,
 A69C0453,South Asia,South Asia,,South Asia
@@ -503,45 +503,45 @@ A69D0181,Europe,Europe,,Europe
 A69D0184,Europe,Europe,,Europe
 A69D0185,Europe,Europe,,Europe
 A69D0187,Africa,Africa,,Americas
-A69D0190,Europe,Europe,,
-A69D0194,Europe,Europe,,Europe
-A69D0196,Americas,,,Americas
+A69D0190,Europe,Europe,Europe,
+A69D0194,Europe,Europe,Europe,Europe
+A69D0196,Americas,,Americas,Americas
 A69D0199,Europe,Europe,,Europe
-A69D0200,Americas,Europe,,Europe / Middle East
+A69D0200,Americas,Europe,Europe,Europe / Middle East
 A69D0201,Unassigned / Other,Europe,,Middle East
-A69D0203,South Asia,South Asia,,South Asia
-A69D0206,Europe,Europe,,Europe
+A69D0203,South Asia,South Asia,South Asia,South Asia
+A69D0206,Europe,Europe,Europe,Europe
 A69D0207,Europe,Europe,,Europe
 A69D0208,East Asia,East Asia,,East Asia
 A69D0211,Europe,Europe,,Europe
 A69D0212,Europe,Europe,,Europe
-A69D0213,South Asia,South Asia,,South Asia
-A69D0214,South Asia,South Asia,,Middle East
-A69D0217,Unassigned / Other,Africa,,
+A69D0213,South Asia,South Asia,South Asia,South Asia
+A69D0214,South Asia,South Asia,Europe,Middle East
+A69D0217,Unassigned / Other,Africa,Africa,
 A69D0227,East Asia,East Asia,,Southeast Asia
 A69D0229,Europe,Europe,,Europe
 A69D0232,Unassigned / Other,Europe,,Middle East
 A69D0238,Europe,Europe,,Europe / Middle East
 A69D0239,Europe,Europe,,Europe
 A69D0240,Europe,Europe,,Europe
-A69D0241,Americas,Europe,,Middle East
-A69D0247,Europe,Europe,,
+A69D0241,Americas,Europe,Europe,Middle East
+A69D0247,Europe,Europe,Europe,
 A69D0249,South Asia,South Asia,,East Asia
 A69D0254,Europe,Europe,,Europe
 A69D0255,Europe,Europe,,Europe
-A69D0257,Europe,Europe,,Europe
+A69D0257,Europe,Europe,Europe,Europe
 A69D0262,Americas,Europe,,
 A69D0264,Europe,Europe,,Europe
-A69D0265,South Asia,South Asia,,South Asia
+A69D0265,South Asia,South Asia,South Asia,South Asia
 A69D0268,Europe,Europe,,Europe
 A69D0269,Europe,Europe,,Europe
-A69D0270,Americas,Europe,,Europe / Middle East
-A69D0271,Europe,Europe,,Europe / Middle East
-A69D0274,East Asia / Oceania,East Asia,,
+A69D0270,Americas,Europe,Europe,Europe / Middle East
+A69D0271,Europe,Europe,Europe,Europe / Middle East
+A69D0274,East Asia / Oceania,East Asia,East Asia,
 A69D0276,Europe,Europe,,Europe
 A69D0285,Europe,Europe,,Europe
 A69D0286,Europe,Europe,,Europe
-A69D0289,Europe,Europe,,Europe
+A69D0289,Europe,Europe,Europe,Europe
 A69D0297,Europe,Europe,,Europe
 A69D0298,South Asia,South Asia,,South Asia
 A69D0299,Europe,Europe,,Europe
@@ -549,7 +549,7 @@ A69D0302,East Asia / Oceania,East Asia,,Southeast Asia
 A69D0303,East Asia / Oceania,East Asia,,Southeast Asia
 A69D0304,Europe,Europe,,Europe
 A69D0305,Europe,Europe,,Europe
-A69D0308,Europe,Europe,,Europe
+A69D0308,Europe,Europe,Europe,Europe
 A69D0309,Africa,Africa,,Other
 A69D0310,Americas,Europe,,Americas
 A69D0316,Europe,Europe,,Europe
@@ -757,7 +757,7 @@ A69M0158,Americas,Europe,,
 A69M0162,Europe,Europe,,Europe
 A69M0163,East Asia,East Asia,,Southeast Asia
 A69M0164,Europe,Europe,,Europe
-A69M0165,Europe,Europe,,Europe
+A69M0165,Europe,Europe,Europe,Europe
 A69M0167,Europe,Europe,,
 A69M0168,Americas,Europe,,
 A69M0172,Europe,Europe,,Europe
@@ -770,64 +770,64 @@ A69M0180,Europe,Europe,,Europe
 A69M0182,Europe,Europe,,Europe
 A69M0183,Unassigned / Other,South Asia,,Other
 A69M0186,Europe,Europe,,Europe
-A69M0188,Americas,Europe,,Middle East
-A69M0189,Americas,Europe,,Europe
+A69M0188,Americas,Europe,Europe,Middle East
+A69M0189,Americas,Europe,Europe,Europe
 A69M0191,Europe,Europe,,Europe
 A69M0192,Europe,Europe,,Europe
-A69M0193,Europe,Europe,,Europe
+A69M0193,Europe,Europe,Europe,Europe
 A69M0197,South Asia,South Asia,,South Asia
-A69M0198,Africa,Africa,,Africa
+A69M0198,Africa,Africa,Africa,Africa
 A69M0202,Europe,Europe,,Europe
-A69M0204,Europe,Europe,,Europe
+A69M0204,Europe,Europe,Europe,Europe
 A69M0205,East Asia,East Asia,,Southeast Asia
 A69M0209,Europe,Europe,,Europe
-A69M0210,Europe,Europe,,Europe
-A69M0215,Europe,Europe,,Europe
-A69M0216,Europe,Europe,,Europe
-A69M0218,Europe,Europe,,Europe
+A69M0210,Europe,Europe,Europe,Europe
+A69M0215,Europe,Europe,Europe,Europe
+A69M0216,Europe,Europe,Europe,Europe
+A69M0218,Europe,Europe,Europe,Europe
 A69M0220,East Asia,East Asia,,
 A69M0221,Africa,Africa,,Africa
-A69M0222,Europe,Europe,,Europe
-A69M0223,Europe,Europe,,Europe
+A69M0222,Europe,Europe,Europe,Europe
+A69M0223,Europe,Europe,Europe,Europe
 A69M0224,Unassigned / Other,Europe,,
 A69M0228,Europe,Europe,,Europe
-A69M0230,Americas,,,Americas
-A69M0231,East Asia,East Asia,,Southeast Asia
+A69M0230,Americas,,Africa,Americas
+A69M0231,East Asia,East Asia,East Asia,Southeast Asia
 A69M0234,Europe,Europe,,Europe
-A69M0235,Europe,Europe,,Europe
-A69M0237,Europe,Europe,,Europe
+A69M0235,Europe,Europe,Europe,Europe
+A69M0237,Europe,Europe,Europe,Europe
 A69M0242,Europe,Europe,,Europe
-A69M0243,South Asia,South Asia,,South Asia
-A69M0244,Americas,Europe,,Americas
-A69M0245,Americas,Europe,,Middle East
+A69M0243,South Asia,South Asia,South Asia,South Asia
+A69M0244,Americas,Europe,Europe,Americas
+A69M0245,Americas,Europe,Europe,Middle East
 A69M0248,Europe,Europe,,Europe
-A69M0251,East Asia / Oceania,East Asia,,
+A69M0251,East Asia / Oceania,East Asia,East Asia,
 A69M0252,Americas,Europe,,Europe / Middle East
 A69M0253,South Asia,South Asia,,
 A69M0256,East Asia,East Asia,,East Asia
 A69M0258,Africa,Africa,,
 A69M0259,Europe,Europe,,Europe
 A69M0261,Americas,,,Americas
-A69M0263,East Asia,East Asia,,East Asia
+A69M0263,East Asia,East Asia,East Asia,East Asia
 A69M0266,Americas,,,Americas
 A69M0272,East Asia / Oceania,East Asia,,
-A69M0273,Americas,,,Americas
-A69M0275,Europe,Europe,,Europe
+A69M0273,Americas,,Americas,Americas
+A69M0275,Europe,Europe,Europe,Europe
 A69M0277,Africa,Africa,,Africa
 A69M0281,Europe,Europe,,Europe
-A69M0284,Africa,Africa,,Americas
+A69M0284,Africa,Africa,Africa,Americas
 A69M0290,Europe,Europe,,Europe
 A69M0291,Americas,,,Americas
-A69M0292,Europe,Europe,,Europe / Middle East
+A69M0292,Europe,Europe,Europe,Europe / Middle East
 A69M0293,Americas,Europe,,
 A69M0294,Americas,Europe,,Americas
-A69M0295,Americas,Europe,,Americas
-A69M0296,Americas,,,Americas
+A69M0295,Americas,Europe,Africa,Americas
+A69M0296,Americas,,Americas,Americas
 A69M0300,Europe,Europe,,Europe
-A69M0301,Europe,Europe,,Europe
+A69M0301,Europe,Europe,Europe,Europe
 A69M0306,Europe,Europe,,Europe
 A69M0307,Europe,Europe,,
-A69M0311,East Asia,East Asia,,
+A69M0311,East Asia,East Asia,East Asia,
 A69M0312,East Asia,East Asia,,East Asia
 A69M0313,Africa,Africa,,Africa
 A69M0319,Europe,Europe,,Europe
@@ -1037,7 +1037,7 @@ A69O0083,South Asia,South Asia,,
 A69O0084,Unassigned / Other,,,
 A69O0085,South Asia,South Asia,,South Asia
 A69O0086,South Asia,South Asia,,South Asia
-A69O0087,South Asia,South Asia,,South Asia
+A69O0087,South Asia,South Asia,South Asia,South Asia
  1041:A69O0087.1,South Asia,,,
  1041:A69O0087.1,South Asia,,,
 A69O0087.1,South Asia,,,
@@ -1051,35 +1051,35 @@ A69O0101,East Asia / Oceania,South Asia,,South Asia
  1048:A69O0101.1,East Asia / Oceania,,,
 A69O0101.1,East Asia / Oceania,,,
 A69O0102,,,,
-A69O0103,South Asia,South Asia,,South Asia
+A69O0103,South Asia,South Asia,South Asia,South Asia
 A69O0104,Europe,Europe,,
-A69O0105,Europe,Europe,,
+A69O0105,Europe,Europe,Europe,
 A69O0106,,,,
-A69O0107,South Asia,South Asia,,
-A69O0108,Europe,Europe,,
+A69O0107,South Asia,South Asia,South Asia,
+A69O0108,Europe,Europe,Europe,
 A69O0109,Europe,Europe,,
 A69O0110,Europe,Europe,,
 A69O0111,Europe,Europe,,
-A69O0112,Europe,Europe,,
-A69O0113,Europe,Europe,,
-A69O0114,South Asia,South Asia,,
+A69O0112,Europe,Europe,Europe,
+A69O0113,Europe,Europe,Europe,
+A69O0114,South Asia,South Asia,South Asia,
 A69O0115,Africa,Africa,,
-A69O0118,Africa,Africa,,
+A69O0118,Africa,Africa,Africa,
 A69O0119,South Asia,South Asia,,
-A69O0120,South Asia,South Asia,,
-A69O0121,Africa,Africa,,
+A69O0120,South Asia,South Asia,South Asia,
+A69O0121,Africa,Africa,Africa,
 A69O0122,Unassigned / Other,,,
 A69O0123,Africa,Africa,,
-A69O0124,South Asia,South Asia,,
+A69O0124,South Asia,South Asia,South Asia,
 A69O0125,South Asia,South Asia,,
-A69O0126,South Asia,South Asia,,
+A69O0126,South Asia,South Asia,South Asia,
 A69O0127,Europe,Europe,,Europe
-A69O0128,South Asia,South Asia,,
+A69O0128,South Asia,South Asia,South Asia,
 A69O0129,South Asia,South Asia,,
 A69O0130,Americas,,,
-A69O0131,Africa,Africa,,
+A69O0131,Africa,Africa,Africa,
 A69O0132,South Asia,South Asia,,
-A69O0133,Europe,Europe,,
+A69O0133,Europe,Europe,Europe,
 A69O0134,South Asia,South Asia,,
 A69O0135,South Asia,South Asia,,
 A69O0136,Europe,Europe,,
@@ -1125,15 +1125,15 @@ A69O0181,South Asia,South Asia,,
 A69O0182,South Asia,South Asia,,
 A69O0183,South Asia,South Asia,,
 A69O0184,Americas,Europe,,
-A69O0189,South Asia,South Asia,,South Asia
-A69O0191,Unassigned / Other,South Asia,,
-A69O0193,South Asia,South Asia,,
+A69O0189,South Asia,South Asia,South Asia,South Asia
+A69O0191,Unassigned / Other,South Asia,Europe,
+A69O0193,South Asia,South Asia,South Asia,
 A69O0194,Africa,Africa,,Africa
 A69O0195,South Asia,South Asia,,Other
 A69O0196,East Asia / Oceania,East Asia,,Southeast Asia
 A69O0197,Europe,Europe,,Europe
 A69O0198,Unassigned / Other,East Asia,,Other
-A69O0199,Americas,,,
+A69O0199,Americas,,Americas,
 A69O0200,,,,
 A69O0201,Europe,Europe,,Europe
 A69O0202,Africa,Africa,,
@@ -1333,6 +1333,7 @@ AC69D0134,Europe,,,
 ,,,,
 ,,,,
 ,,,,
+,,,Europe,
 ,,,,
 ,,,,
 ,,,,
@@ -1386,8 +1387,7 @@ AC69D0134,Europe,,,
 ,,,,
 ,,,,
 ,,,,
-,,,,
-,,,,
+,,,Europe,
 ,,,,
 ,,,,
 ,,,,
