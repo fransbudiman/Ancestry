@@ -53,3 +53,4 @@ fig = go.Figure(data=[go.Sankey(
 
 fig.update_layout(title_text=name, font_size=10)
 fig.show()
+fig.write_html(f"sankey_{source_label}_{target_label}.html")

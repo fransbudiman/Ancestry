@@ -96,6 +96,9 @@ fi
 # get sample name from the argument
 NAME=$(echo "$ARG" | grep -oP '(?<=-i )\S+')
 echo $NAME
+
+SCRIPT_DIR=$(dirname "$0")
+PROJECT_ROOT=$(dirname "$SCRIPT_DIR")
 # # Get the result directory from the argument
 # RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
 # mkdir -p "$RESULT_DIR/SLURM_LOGS"
@@ -113,22 +116,21 @@ export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/plink2:$PATH
 
-# # Environment setup for Narval cluster. Uncomment if needed and comment out the code below.
-# module load StdEnv/2020
-# module load plink/1.9b_6.21-x86_64
-# module load r/4.4.0
-# module load gcc/13.3
-# module load intel/2024.2.0
+if [[ "\$CC_CLUSTER" == "narval" ]]; then
+  module load StdEnv/2020
+  module load plink/1.9b_6.21-x86_64
 
-# Environment setup for Niagara cluster. Uncomment if needed and comment out the code above.
-export R_LIBS_USER=~/R/library
-export PATH=$HOME/bin:$PATH
-module load NiaEnv
-module load plink/1.90b6
-module load plink2/2.00a3
-module load gcc/8.3.0
-module load intel/2019u4
-module load r/4.1.2
+elif [[ "\$CC_CLUSTER" == "niagara" ]]; then
+  module load NiaEnv
+  module load plink/1.90b6
+  module load plink2/2.00a3
+  module load gcc/8.3.0
+  module load intel/2019u4
+  module load r/4.1.2
+else
+  echo "Unknown cluster: \$CC_CLUSTER"
+  exit 1
+fi
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -137,19 +139,19 @@ export LC_ALL=en_US.UTF-8
 
 # Pick which script to run based on the argument
 if [[ $REF == "hapmap" ]]; then
-  bash ancestry_estimation_hapmap3.sh $ARG
+  bash "$PROJECT_ROOT/ancestry_estimation_hapmap3.sh" $ARG
   if [ $? -ne 0 ]; then
     echo "Error: ancestry_estimation_hapmap3.sh failed."
     exit 1
   fi
 elif [[ $REF == "grafpop" ]]; then
-  bash ancestry_estimation_grafpop.sh $ARG
+  bash "$PROJECT_ROOT/ancestry_estimation_grafpop.sh" $ARG
   if [ $? -ne 0 ]; then
     echo "Error: ancestry_estimation_grafpop.sh failed."
     exit 1
   fi
 elif [[ $REF == "1kgenomes" ]]; then
-    bash ancestry_estimation_1kgenomes.sh $ARG
+    bash "$PROJECT_ROOT/ancestry_estimation_1kgenomes.sh" $ARG
     if [ $? -ne 0 ]; then
       echo "Error: 1000Genomes_Reference.sh failed."
       exit 1
