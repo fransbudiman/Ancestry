@@ -44,6 +44,8 @@ cd ${TEMPDIR}
 
   # download the liftOver tool
   wget https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
+
+  chmod +x liftOver
   
   ./liftOver ${TEMPDIR}/HapMapIII_NCBI36.tolift ${CONFIG}/hg18ToHg19.over.chain \
      ${TEMPDIR}/HapMapIII_CGRCh37 ${TEMPDIR}/HapMapIII_NCBI36.unMapped
