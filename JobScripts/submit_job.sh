@@ -105,6 +105,16 @@ PROJECT_ROOT=$(dirname "$SCRIPT_DIR")
 # RESULT_DIR=$(echo "$ARG" | grep -oP '(?<=-o )\S+')
 # mkdir -p "$RESULT_DIR/SLURM_LOGS"
 
+# assign memory depending on the cluster
+if [[ "$CC_CLUSTER" == "narval" ]]; then
+  MEM_LINE="#SBATCH --mem=$MEMORY"
+elif [[ "$CC_CLUSTER" == "niagara" ]]; then
+  MEM_LINE=""
+else
+  echo "Unknown cluster: $CC_CLUSTER"
+  exit 1
+fi
+
 cat <<EOF > $JOB_SCRIPT
 #!/bin/bash
 #SBATCH --nodes=1
@@ -113,7 +123,7 @@ cat <<EOF > $JOB_SCRIPT
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
-#SBATCH --mem=$MEMORY
+$MEM_LINE
 
 export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
