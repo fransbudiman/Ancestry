@@ -65,10 +65,12 @@ find -L "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r d
     exec 19>merged_logs.log
     BASH_XTRACEFD=19
 
-    if [ "$REF" = "1kgenomes" ] || [ "$REF" = "hapmap" ]; then
+    if [ "$REF" = "1kgenomes" ]; then
         # Submit the job by running the submit_job.sh script
+        bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -c $CPU -r $REF -m "250G" -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
+    elif [ "$REF" = "hapmap" ]; then
         bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
-    else
+    elif [ "$REF" = "grafpop" ]; then
         bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -t "00:30:00" -c $CPU -r $REF -a "-v ${VCF_PATH} -d ${PWD}/Result"
     fi
 

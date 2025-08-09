@@ -5,15 +5,17 @@ OUTPUT="job_log"
 NTASKS=1
 TIME="24:00:00"
 CPU=40
+MEMORY=100G
 
 # Parse command-line arguments
-while getopts ":n:t:c:a:r:" opt; do
+while getopts ":n:t:c:a:r:m:" opt; do
   case $opt in
     n) NTASKS=$OPTARG ;;
     t) TIME=$OPTARG ;;
     c) CPU=$OPTARG ;;
     a) ARG=$OPTARG ;;
     r) REF=$OPTARG ;;
+    m) MEMORY=$OPTARG ;;
     \?) echo "Invalid option: -$OPTARG" >&2; exit 1 ;;
   esac
 done
@@ -111,6 +113,7 @@ cat <<EOF > $JOB_SCRIPT
 #SBATCH --ntasks=$NTASKS
 #SBATCH --time=$TIME
 #SBATCH --cpus-per-task=$CPU
+#SBATCH --mem=$MEMORY
 
 export R_LIBS_USER=~/R/library
 export PATH=$HOME/bin:$PATH
