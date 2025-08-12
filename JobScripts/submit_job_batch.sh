@@ -67,7 +67,7 @@ find -L "$DIR" -type f \( -name "*.vcf" -o -name "*.vcf.gz" \) | while read -r d
 
     if [ "$REF" = "1kgenomes" ]; then
         # Submit the job by running the submit_job.sh script
-        bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -c $CPU -r $REF -m "250G" -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
+        bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -c $CPU -r $REF -m "250G" -t "35:00:00" -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
     elif [ "$REF" = "hapmap" ]; then
         bash "$(dirname "$0")/submit_job.sh" -n $NTASKS -c $CPU -r $REF -a "-i ${VCF} -v ${VCF_PATH} -o ${PWD}/Result -c ${THREADS}"
     elif [ "$REF" = "grafpop" ]; then
