@@ -15,6 +15,8 @@ do
     esac
 done
 
+SOURCE_DIR=$(readlink -f "$SOURCE_DIR")
+
 mkdir -p "$DIRECTORY"
 if [ ! -f "$CSV" ]; then
     echo "CSV file does not exist: $CSV"
@@ -32,8 +34,9 @@ tail -n +2 "$CSV" | cut -d',' -f"$tcagid_col_idx" | while read sample; do
     file=$(find "$SOURCE_DIR" -type f -name "${sample}*.vcf")
     
     if [ -n "$file" ]; then
-        ln -sf "$file" "gencov_100random/$(basename "$file")"
-        echo "Copied $file to $DIRECTORY/"
+        real_file=$(readlink -f "$file")
+        ln -sf "$real_file" "$DIRECTORY/$(basename "$real_file")"
+        echo "Copied $real_file to $DIRECTORY/"
     else
         echo "No file found for sample: $sample"
     fi
@@ -47,8 +50,9 @@ tail -n +2 "$CSV" | cut -d',' -f"$studyid_col_idx" | while read sample; do
     file=$(find "$SOURCE_DIR" -type f -name "$sample*.vcf*")
     
     if [ -n "$file" ]; then
-        ln -sf "$file" "gencov_100random/$(basename "$file")"
-        echo "Copied $file to $DIRECTORY/"
+        real_file=$(readlink -f "$file")
+        ln -sf "$real_file" "$DIRECTORY/$(basename "$real_file")"
+        echo "Copied $real_file to $DIRECTORY/"
     else
         echo "No directory found for sample: $sample"
     fi
